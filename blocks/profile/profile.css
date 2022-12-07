@@ -53,6 +53,13 @@
 
 .edit-button {
   grid-area: edit-button;
+  margin: 48px 0 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
@@ -66,11 +73,17 @@
 }
 
 .edit-button:hover {
-  cursor: pointer;
   opacity: 0.6;
 }
 
 .add-button {
+  margin: 48px 0 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
   width: 150px;
   height: 50px;
   border: 2px solid #FFFFFF;
@@ -83,7 +96,6 @@
 }
 
 .add-button:hover {
-  cursor: pointer;
   opacity: 0.6;
 }
 
