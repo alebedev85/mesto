@@ -1,0 +1,27 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/inter.css);
+@import url(../blocks/opacity/opacity.css);
+
+/* Page */
+@import url(../blocks/page/page.css);
+
+/* Header */
+@import url(../blocks/header/header.css);
+
+/* Main */
+/* Profile */
+@import url(../blocks/profile/profile.css);
+
+/* Elements */
+@import url(../blocks/elements/elements.css);
+
+/* Element */
+@import url(../blocks/element/element.css);
+
+/* Footer */
+@import url(../blocks/footer/footer.css);
+
+/* * {
+  border: 1px solid red;
+} */
+

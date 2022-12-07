@@ -1,0 +1,37 @@
+.element {
+  width: 282px;
+  height: 361px;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.element__image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.element__title {
+  margin: 20px 20px 31px 21px;
+  padding: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.element__reaction {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../images/heart.svg);
+}
+
+.element__reaction:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
