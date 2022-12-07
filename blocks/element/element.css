@@ -5,30 +5,47 @@
   color: #000000;
   border-radius: 10px;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "image image"
+    "title reaction";
+  align-content: center;
+  column-gap: 11px;
 }
 
 .element__image {
+  grid-area: image;
   width: 100%;
   object-fit: cover;
 }
 
 .element__title {
-  margin: 20px 20px 31px 21px;
+  grid-area: title;
+  align-self: start;
+  margin: 25px 0 25px 21px;
   padding: 0;
-  font-family: 'Inter';
+  max-width: 188.3px;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
 }
 
 .element__reaction {
+  grid-area: reaction;
+  align-self: center;
+  margin-right: 20px;
   width: 22px;
   height: 19px;
   background-image: url(../../images/heart.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .element__reaction:hover {
