@@ -6,6 +6,8 @@
 
 /* Header */
 @import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__line/header__line.css);
 
 /* Main */
 /* Profile */
@@ -22,5 +24,3 @@
 
 /* Popup */
 @import url(../blocks/popup/popup.css);
-
-

@@ -66,7 +66,7 @@
   /* min-height: 100%; */
 }
 
-.form__user-info {
+.popup__user-info {
   height: 100%;
   padding: 0;
   margin: 0;
@@ -79,7 +79,7 @@
   /* justify-content: space-between; */
 }
 
-.form__input {
+.popup__input {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -96,7 +96,7 @@
   margin-bottom: 31px;
 }
 
-.form__input:focus {
+.popup__input:focus {
   outline: 2px solid blue;
   border-radius: 2px;
 }
