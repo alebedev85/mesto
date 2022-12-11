@@ -1,14 +1,13 @@
 .header {
   padding-top: 45px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 41px;
+  min-height: 119px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 320px) {
   .header{
     padding-top: 28px;
-    gap:31.6px;
+    min-height: 84px;
   }
 }
