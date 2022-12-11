@@ -5,7 +5,7 @@
     grid-template-areas:
       "name edit-button"
       "occupation occupation";
-    column-gap: 24px;
+    column-gap: 19px;
     row-gap: 8px;
   }
 
