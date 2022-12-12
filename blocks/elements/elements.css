@@ -11,8 +11,8 @@
   .elements {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    padding-left: 27px;
-    padding-right: 27px;
+    padding-left: 19px;
+    padding-right: 19px;
   }
 }
 
