@@ -3,6 +3,10 @@
   object-fit: contain;
 }
 
+.header__logo:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 880px) {
   .header__logo {
     margin-left: 27px;
