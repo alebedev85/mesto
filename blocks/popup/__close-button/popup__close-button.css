@@ -9,7 +9,7 @@
   height: 32px;
   background-image: url(../../../images/Close-Button.svg);
   background-position: center center;
-  background-size: 32px 32px;
+  background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
   right: -40px;
