@@ -1,13 +1,13 @@
-let editButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let closeButton = document.querySelector('.popup__close-button');
+const editButton = document.querySelector('.profile__edit-button');
+const popup = document.querySelector('.popup');
+const closeButton = document.querySelector('.popup__close-button');
 
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
 
-let formElement = document.querySelector('.popup__form');
-let nameInput = document.querySelector('.popup__input_input_name');
-let jobInput = document.querySelector('.popup__input_input_job');
+const formElement = document.querySelector('.popup__form');
+const nameInput = document.querySelector('.popup__input_input_name');
+const jobInput = document.querySelector('.popup__input_input_job');
 
 
 function openForm() {
