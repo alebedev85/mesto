@@ -27,10 +27,13 @@ const initialCards = [
 
 //Template//
 const cardsContainer = document.querySelector('.elements')
-const cardTemplate = document.querySelector('#element-temlate').content;
+const cardTemplate = document
+  .querySelector('.element-temlate')
+  .content
+  .querySelector('.element');
 
 function creatCard(titleCard, imageCard) {
-  const card = cardTemplate.querySelector('.element').cloneNode(true);
+  const card = cardTemplate.cloneNode(true);
   const cardImage = card.querySelector('.element__image');
   const cardTitle = card.querySelector('.element__title');
   cardTitle.textContent = titleCard;

@@ -32,6 +32,7 @@
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
+
   <div class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
@@ -45,26 +46,29 @@
       </form>
     </div>
   </div>
+
   <div class="popup popup_type_add">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="formElement">
         <fieldset class="popup__user-info">
-          <input class="popup__input popup__input_input_place" type="text" placeholder="Название" name="inputName">
-          <input class="popup__input popup__input_input_link" type="text" placeholder="Ссылка на картинку" name="inputJob">
+          <input class="popup__input popup__input_input_place" type="text" placeholder="Название" name="placeInput">
+          <input class="popup__input popup__input_input_link" type="text" placeholder="Ссылка на картинку" name="linkInput">
           <button class="popup__save-button" type="submit" name="saveButton">Создать</button>
         </fieldset>
       </form>
     </div>
   </div>
-  <template id="element-temlate">
+
+  <template class="element-temlate">
     <article class="element">
       <img class="element__image" src="" alt="Фото карточки">
       <h2 class="element__title"></h2>
       <button type="button" name="reactionButton" class="element__reaction-button"></button>
     </article>
   </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 
