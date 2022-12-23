@@ -26,16 +26,16 @@ const initialCards = [
 ];
 
 //Template//
-const elements = document.querySelector('.elements')
-const elementTemplate = document.querySelector('#element-temlate').content;
+const cardsContainer = document.querySelector('.elements')
+const cardTemplate = document.querySelector('#element-temlate').content;
 
-function creatCard(nameCard, imageCard) {
-  const card = elementTemplate.querySelector('.element').cloneNode(true);
+function creatCard(titleCard, imageCard) {
+  const card = cardTemplate.querySelector('.element').cloneNode(true);
   const cardImage = card.querySelector('.element__image');
   const cardTitle = card.querySelector('.element__title');
-  cardTitle.textContent = nameCard;
+  cardTitle.textContent = titleCard;
   cardImage.src = imageCard;
-  elements.append(card);
+  cardsContainer.append(card);
 }
 
 function creatElementFromArray() {
