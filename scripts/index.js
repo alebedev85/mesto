@@ -36,7 +36,6 @@ function creatCard(nameCard, imageCard) {
   cardTitle.textContent = nameCard;
   cardImage.src = imageCard;
   elements.append(card);
-
 }
 
 function creatElementFromArray() {
@@ -62,6 +61,8 @@ const jobInput = editFormElement.querySelector('.popup__input_input_job');
 const addPopup = document.querySelector('.popup_type_add');
 const closeEddButton = addPopup.querySelector('.popup__close-button');
 const addFormElement = addPopup.querySelector('.popup__form');
+const placeInput = addFormElement.querySelector('.popup__input_input_place');
+const linkInput = addFormElement.querySelector('.popup__input_input_link');
 
 //profile//
 const profileName = document.querySelector('.profile__name');
@@ -88,8 +89,14 @@ closeEddButton.addEventListener('click', () => closeForm(addPopup));
 //Handle Edit Form//
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 };
 editFormElement.addEventListener('submit', (evt) => {handleEditFormSubmit(evt); closeForm(editPopup)});
+
+//Handle Add Form//
+function handleAddFormSubmit(evt) {
+  evt.preventDefault();
+  creatCard(placeInput.value, linkInput.value);
+};
+addFormElement.addEventListener('submit', (evt) => {handleAddFormSubmit(evt); closeForm(addPopup)});
