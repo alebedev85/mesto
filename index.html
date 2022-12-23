@@ -26,7 +26,7 @@
       </div>
       <button class="profile__add-button" type="button" name="editCard"></button>
     </section>
-    <section class="elements" aria-label="Картачки с фотографиями">
+    <section class="elements" aria-label="Картачки c фотографиями">
       <article class="element">
         <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фото Карачаевск">
         <h2 class="element__title">Карачаевск</h2>
@@ -62,7 +62,7 @@
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__close-button" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -71,6 +71,19 @@
           <input class="popup__input popup__input_input_name" type="text" placeholder="Ваше имя" name="inputName">
           <input class="popup__input popup__input_input_job" type="text" placeholder="Ваше занятие" name="inputJob">
           <button class="popup__save-button" type="submit" name="saveButton">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_add">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="formElement">
+        <fieldset class="popup__user-info">
+          <input class="popup__input popup__input_input_place" type="text" placeholder="Название" name="inputName">
+          <input class="popup__input popup__input_input_link" type="text" placeholder="Ссылка на картинку" name="inputJob">
+          <button class="popup__save-button" type="submit" name="saveButton">Создать</button>
         </fieldset>
       </form>
     </div>
