@@ -36,14 +36,19 @@ function creatCard(titleCard, imageCard) {
   const card = cardTemplate.cloneNode(true);
   const cardImage = card.querySelector('.element__image');
   const cardTitle = card.querySelector('.element__title');
+  const likeButton = card.querySelector('.element__reaction-button');
+  likeButton.addEventListener('click', () => setLike(likeButton));
   cardTitle.textContent = titleCard;
   cardImage.src = imageCard;
   cardsContainer.append(card);
 }
 
+function setLike(element) {
+  element.classList.toggle('element__reaction-button_activ')
+}
+
 function creatElementFromArray() {
   initialCards.forEach((item) => creatCard(item.name, item.link))
-
 }
 
 creatElementFromArray()
