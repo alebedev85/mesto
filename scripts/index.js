@@ -36,8 +36,13 @@ function creatCard(titleCard, imageCard) {
   const card = cardTemplate.cloneNode(true);
   const cardImage = card.querySelector('.element__image');
   const cardTitle = card.querySelector('.element__title');
+
   const likeButton = card.querySelector('.element__reaction-button');
   likeButton.addEventListener('click', () => setLike(likeButton));
+
+  const trashButton = card.querySelector('.element__trash-button');
+  trashButton.addEventListener('click', () => card.remove());
+
   cardTitle.textContent = titleCard;
   cardImage.src = imageCard;
   cardsContainer.append(card);
@@ -47,11 +52,11 @@ function setLike(element) {
   element.classList.toggle('element__reaction-button_activ')
 }
 
-function creatElementFromArray() {
+function creatElementsFromArray() {
   initialCards.forEach((item) => creatCard(item.name, item.link))
 }
 
-creatElementFromArray()
+creatElementsFromArray()
 
 //Buttons//
 const editButton = document.querySelector('.profile__edit-button');
@@ -79,8 +84,6 @@ const profileJob = document.querySelector('.profile__job');
 //Open Poup//
 function openPoup(popup) {
   popup.classList.add('popup_opened');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
 };
 
 //Close Poup//
@@ -88,7 +91,11 @@ function closeForm(popup) {
   popup.classList.remove('popup_opened');
 };
 
-editButton.addEventListener('click', () => openPoup(editPopup));
+editButton.addEventListener('click', () => {
+  openPoup(editPopup);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
 closeEditButton.addEventListener('click', () => closeForm(editPopup));
 
 addButton.addEventListener('click', () => openPoup(addPopup));
@@ -100,11 +107,11 @@ function handleEditFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 };
-editFormElement.addEventListener('submit', (evt) => {handleEditFormSubmit(evt); closeForm(editPopup)});
+editFormElement.addEventListener('submit', (evt) => { handleEditFormSubmit(evt); closeForm(editPopup) });
 
 //Handle Add Form//
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   creatCard(placeInput.value, linkInput.value);
 };
-addFormElement.addEventListener('submit', (evt) => {handleAddFormSubmit(evt); closeForm(addPopup)});
+addFormElement.addEventListener('submit', (evt) => { handleAddFormSubmit(evt); closeForm(addPopup) });
