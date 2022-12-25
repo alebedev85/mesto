@@ -32,10 +32,17 @@ const cardTemplate = document
   .content
   .querySelector('.element');
 
+//Creat Card//
 function creatCard(titleCard, imageCard) {
   const card = cardTemplate.cloneNode(true);
   const cardImage = card.querySelector('.element__image');
   const cardTitle = card.querySelector('.element__title');
+
+  cardImage.addEventListener('click', () => {
+    imagePicturPoup.src = cardImage.src;
+    titlePicturPoup.textContent = cardTitle.textContent;
+    openPoup(picturePopup);
+  });
 
   const likeButton = card.querySelector('.element__reaction-button');
   likeButton.addEventListener('click', () => setLike(likeButton));
@@ -65,19 +72,26 @@ const closeButton = document.querySelector('.popup__close-button');
 
 //Edit Popup//
 const editPopup = document.querySelector('.popup_type_edit');
-const closeEditButton = editPopup.querySelector('.popup__close-button');
+const closeEditPopupButton = editPopup.querySelector('.popup__close-button');
 const editFormElement = editPopup.querySelector('.popup__form');
 const nameInput = editFormElement.querySelector('.popup__input_input_name');
 const jobInput = editFormElement.querySelector('.popup__input_input_job');
 
 //Edd Popup//
 const addPopup = document.querySelector('.popup_type_add');
-const closeEddButton = addPopup.querySelector('.popup__close-button');
+const closeEddPopupButton = addPopup.querySelector('.popup__close-button');
 const addFormElement = addPopup.querySelector('.popup__form');
 const placeInput = addFormElement.querySelector('.popup__input_input_place');
 const linkInput = addFormElement.querySelector('.popup__input_input_link');
 
-//profile//
+//Picture popup//
+const picturePopup = document.querySelector('.popup_type_picture');
+const imagePicturPoup = picturePopup.querySelector('.popup__picture');
+const titlePicturPoup = picturePopup.querySelector('.popup__picture-title');
+const closePicturePoupButton = picturePopup.querySelector('.popup__close-button');
+
+
+//Profile//
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
@@ -91,15 +105,20 @@ function closeForm(popup) {
   popup.classList.remove('popup_opened');
 };
 
+//Open and Close Edit Poup//
 editButton.addEventListener('click', () => {
   openPoup(editPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
-closeEditButton.addEventListener('click', () => closeForm(editPopup));
+closeEditPopupButton.addEventListener('click', () => closeForm(editPopup));
 
+//Open and Close Add Poup//
 addButton.addEventListener('click', () => openPoup(addPopup));
-closeEddButton.addEventListener('click', () => closeForm(addPopup));
+closeEddPopupButton.addEventListener('click', () => closeForm(addPopup));
+
+//Close Edit Picture//
+closePicturePoupButton.addEventListener('click', () => closeForm(picturePopup));
 
 //Handle Edit Form//
 function handleEditFormSubmit(evt) {
