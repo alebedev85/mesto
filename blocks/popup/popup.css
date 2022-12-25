@@ -12,3 +12,24 @@
   opacity: 0;
   transition: all 0.2s ease 0s;
 }
+
+.popup_type_picture {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.popup__picture-container {
+  position: relative;
+}
+
+.popup__picture-container {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup__picture-title {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}

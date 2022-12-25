@@ -45,7 +45,7 @@ function creatCard(titleCard, imageCard) {
 
   cardTitle.textContent = titleCard;
   cardImage.src = imageCard;
-  cardsContainer.append(card);
+  cardsContainer.prepend(card);
 }
 
 function setLike(element) {
