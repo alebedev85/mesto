@@ -81,7 +81,7 @@ function openPopup(popup) {
 };
 
 //Close Popup//
-function closeForm(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 };
 
@@ -91,14 +91,14 @@ buttonEditProfile.addEventListener('click', () => {
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
 });
-buttonClosePopupEditProfile.addEventListener('click', () => closeForm(popupEditProfile));
+buttonClosePopupEditProfile.addEventListener('click', () => closePopup(popupEditProfile));
 
 //Open and Close Add Popup//
 buttonAddNewCard.addEventListener('click', () => openPopup(popupAddCard));
-buttonClosePopupAddCard.addEventListener('click', () => closeForm(popupAddCard));
+buttonClosePopupAddCard.addEventListener('click', () => closePopup(popupAddCard));
 
 //Close Edit Picture//
-buttonClosePicturePoup.addEventListener('click', () => closeForm(popupPicture));
+buttonClosePicturePoup.addEventListener('click', () => closePopup(popupPicture));
 
 //Handle Edit Form//
 function handleEditFormSubmit(evt) {
@@ -106,11 +106,11 @@ function handleEditFormSubmit(evt) {
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
 };
-formEditProfile.addEventListener('submit', (evt) => { handleEditFormSubmit(evt); closeForm(popupEditProfile) });
+formEditProfile.addEventListener('submit', (evt) => { handleEditFormSubmit(evt); closePopup(popupEditProfile) });
 
 //Handle Add Form//
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   renderCard(cardNameImput.value, cardLinkImput.value);
 };
-formEddCard.addEventListener('submit', (evt) => { handleAddFormSubmit(evt); closeForm(popupAddCard) });
+formEddCard.addEventListener('submit', (evt) => { handleAddFormSubmit(evt); closePopup(popupAddCard) });
