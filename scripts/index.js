@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 //Template//
 const cardsContainer = document.querySelector('.elements')
 const cardTemplate = document
@@ -52,7 +25,11 @@ function creatCard(titleCard, imageCard) {
 
   cardTitle.textContent = titleCard;
   cardImage.src = imageCard;
-  cardsContainer.prepend(card);
+  return card;
+}
+
+function renderCard(titleCard, imageCard) {
+  cardsContainer.prepend(creatCard(titleCard, imageCard));
 }
 
 function setLike(element) {
@@ -60,7 +37,7 @@ function setLike(element) {
 }
 
 function creatElementsFromArray() {
-  initialCards.forEach((item) => creatCard(item.name, item.link))
+  initialCards.forEach((item) => renderCard(item.name, item.link))
 }
 
 creatElementsFromArray()
@@ -131,6 +108,6 @@ editFormElement.addEventListener('submit', (evt) => { handleEditFormSubmit(evt);
 //Handle Add Form//
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-  creatCard(placeInput.value, linkInput.value);
+  renderCard(placeInput.value, linkInput.value);
 };
 addFormElement.addEventListener('submit', (evt) => { handleAddFormSubmit(evt); closeForm(addPopup) });
