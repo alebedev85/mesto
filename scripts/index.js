@@ -71,7 +71,7 @@ function setLike(element) {
   element.classList.toggle('element__reaction-button_activ')
 }
 
-//creat Cards FromA rray//
+//creat Cards From Array//
 function creatCardsFromArray() {
   initialCards.forEach((item) => renderCard(item.name, item.link))
 }
