@@ -4,7 +4,7 @@
   line-height: 15px;
   color: #FF0000;
   margin-bottom: 11px;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .popup__input-error_active {
