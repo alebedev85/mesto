@@ -39,8 +39,10 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="formElement">
         <fieldset class="popup__user-info">
-          <input class="popup__input popup__input_input_name" type="text" placeholder="Ваше имя" name="inputName">
-          <input class="popup__input popup__input_input_job" type="text" placeholder="Ваше занятие" name="inputJob">
+          <input class="popup__input popup__input_input_name" type="text" placeholder="Ваше имя" name="inputName" minlength="2" maxlength="40" required>
+          <span class="popup__input-error">Вы пропустили это поле.</span>
+          <input class="popup__input popup__input_input_job" type="text" placeholder="Ваше занятие" name="inputJob" minlength="2" maxlength="200" required>
+          <span class="popup__input-error">Введите адрес сайта.</span>
           <button class="popup__save-button" type="submit" name="saveButton">Сохранить</button>
         </fieldset>
       </form>
@@ -53,9 +55,11 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="formElement">
         <fieldset class="popup__user-info">
-          <input class="popup__input popup__input_input_place" type="text" placeholder="Название" name="cardNameImput">
+          <input class="popup__input popup__input_input_place" type="text" placeholder="Название" name="cardNameImput" required>
+          <span class="popup__input-error">Вы пропустили это поле.</span>
           <input class="popup__input popup__input_input_link" type="text" placeholder="Ссылка на картинку"
-            name="cardLinkImput">
+            name="cardLinkImput" required>
+            <span class="popup__input-error">Введите адрес сайта.</span>
           <button class="popup__save-button" type="submit" name="saveButton">Создать</button>
         </fieldset>
       </form>
@@ -81,6 +85,7 @@
 
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
