@@ -20,6 +20,6 @@
     border-radius: 2px;
   }
 
-  .popup__input-outline-red {
+  .popup__input_type_error {
     border-bottom-color: red;
   }
