@@ -79,23 +79,33 @@ function creatCardsFromArray() {
 creatCardsFromArray()
 
 //Close Popup with Esc//
-function closeModalWindow (modalWindow) {
-  document.removeEventListener('keyup', handleEscUp);
-  modalWindow.classList.remove('popup_opened');
+function closeActivePopup (popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', closePopupWithEsc);
+  document.removeEventListener('click', closePopupWithOverlay);
 };
 
-function handleEscUp (evt) {
+function closePopupWithEsc (evt) {
   evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    closeModalWindow(activePopup);
+    closeActivePopup(activePopup);
   };
 };
+
+function closePopupWithOverlay(evt) {
+  evt.preventDefault();
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.target.classList.contains('popup')) {
+    closeActivePopup(activePopup);
+  };
+}
 
 //Open Popup//
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keyup', handleEscUp);
+  document.addEventListener('keyup', closePopupWithEsc);
+  document.addEventListener('click', closePopupWithOverlay);
 };
 
 //Close Popup//
