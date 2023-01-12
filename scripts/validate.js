@@ -9,7 +9,7 @@ const hideInputError = (formElement, inputElement, {inputErrorClass, errorClass,
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
-  errorElement.textContent = 'Нет ошибок';
+  errorElement.textContent = '';
 };
 
 const checkInputValidity = (formElement, inputElement, rest) => {
