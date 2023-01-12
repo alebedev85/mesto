@@ -20,15 +20,6 @@
   opacity: 0.8;
 }
 
-.button_inactive {
-  background: #E5E5E5;
-  color: #000000;
-  border: 1px solid #000000;
-  border-radius: 2px;
-  pointer-events: none;
-  user-select: none;
-}
-
 @media screen and (max-width: 520px) {
   .popup__save-button {
     margin-top: 15px;

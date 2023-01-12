@@ -79,12 +79,6 @@ function creatCardsFromArray() {
 creatCardsFromArray()
 
 //Close Popup with Esc//
-function closeActivePopup (popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', closePopupWithEsc);
-  document.removeEventListener('click', closePopupWithOverlay);
-};
-
 function closePopupWithEsc (evt) {
   evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
@@ -93,6 +87,7 @@ function closePopupWithEsc (evt) {
   };
 };
 
+//Close Popup with Overlay//
 function closePopupWithOverlay(evt) {
   evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
@@ -100,6 +95,14 @@ function closePopupWithOverlay(evt) {
     closeActivePopup(activePopup);
   };
 }
+
+//Close Active Popup//
+function closeActivePopup (popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', closePopupWithEsc);
+  document.removeEventListener('click', closePopupWithOverlay);
+  activePopup.reset();
+};
 
 //Open Popup//
 function openPopup(popup) {
@@ -111,6 +114,7 @@ function openPopup(popup) {
 //Close Popup//
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.reset();
 };
 
 //Open and Close Edit Popup//
