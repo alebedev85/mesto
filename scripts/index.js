@@ -71,16 +71,31 @@ function setLike(element) {
   element.classList.toggle('element__reaction-button_activ')
 }
 
-//creat Cards From Array//
+//Creat Cards From Array//
 function creatCardsFromArray() {
   initialCards.forEach((item) => renderCard(item.name, item.link))
 }
 
 creatCardsFromArray()
 
+//Close Popup with Esc//
+function closeModalWindow (modalWindow) {
+  document.removeEventListener('keyup', handleEscUp);
+  modalWindow.classList.remove('popup_opened');
+};
+
+function handleEscUp (evt) {
+  evt.preventDefault();
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closeModalWindow(activePopup);
+  };
+};
+
 //Open Popup//
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keyup', handleEscUp);
 };
 
 //Close Popup//
