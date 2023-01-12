@@ -83,26 +83,17 @@ function closePopupWithEsc (evt) {
   evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    closeActivePopup(activePopup);
+    closePopup(activePopup);
   };
 };
 
 //Close Popup with Overlay//
 function closePopupWithOverlay(evt) {
-  evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
   if (evt.target.classList.contains('popup')) {
-    closeActivePopup(activePopup);
+    closePopup(activePopup);
   };
 }
-
-//Close Active Popup//
-function closeActivePopup (popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keyup', closePopupWithEsc);
-  document.removeEventListener('click', closePopupWithOverlay);
-  activePopup.reset();
-};
 
 //Open Popup//
 function openPopup(popup) {
@@ -114,7 +105,8 @@ function openPopup(popup) {
 //Close Popup//
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.reset();
+  document.removeEventListener('keyup', closePopupWithEsc);
+  document.removeEventListener('click', closePopupWithOverlay);
 };
 
 //Open and Close Edit Popup//
@@ -138,7 +130,9 @@ function handleEditFormSubmit(evt) {
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
 };
-formEditProfile.addEventListener('submit', (evt) => { handleEditFormSubmit(evt); closePopup(popupEditProfile) });
+formEditProfile.addEventListener('submit', (evt) => {
+  handleEditFormSubmit(evt);
+  closePopup(popupEditProfile) });
 
 //Handle Add Form//
 function handleAddFormSubmit(evt) {
