@@ -46,6 +46,7 @@ function creatCard(titleCard, imageCard) {
 
   cardImage.addEventListener('click', () => {
     imagePicturPopup.src = cardImage.src;
+    imagePicturPopup.alt = `Фото ${cardTitle}`;
     titlePicturPopup.textContent = cardTitle.textContent;
     openPopup(popupPicture);
   });
@@ -58,6 +59,7 @@ function creatCard(titleCard, imageCard) {
 
   cardTitle.textContent = titleCard;
   cardImage.src = imageCard;
+  cardImage.alt = `Фото ${titleCard}`;
   return card;
 }
 
@@ -80,17 +82,16 @@ creatCardsFromArray()
 
 //Close Popup with Esc//
 function closePopupWithEsc (evt) {
-  evt.preventDefault();
-  const activePopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
   };
 };
 
 //Close Popup with Overlay//
 function closePopupWithOverlay(evt) {
-  const activePopup = document.querySelector('.popup_opened');
   if (evt.target.classList.contains('popup')) {
+    const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
   };
 }
@@ -103,7 +104,7 @@ function openPopup(popup) {
 };
 
 //Close Popup//
-function closePopup(popup) {
+function closePopup(popup, evt) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keyup', closePopupWithEsc);
   document.removeEventListener('click', closePopupWithOverlay);
@@ -132,11 +133,14 @@ function handleEditFormSubmit(evt) {
 };
 formEditProfile.addEventListener('submit', (evt) => {
   handleEditFormSubmit(evt);
-  closePopup(popupEditProfile) });
+  closePopup(popupEditProfile)});
 
 //Handle Add Form//
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   renderCard(cardNameImput.value, cardLinkImput.value);
 };
-formEddCard.addEventListener('submit', (evt) => { handleAddFormSubmit(evt); closePopup(popupAddCard) });
+formEddCard.addEventListener('submit', (evt) => {
+  handleAddFormSubmit(evt);
+  closePopup(popupAddCard);
+  evt.target.reset()});
