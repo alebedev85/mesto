@@ -101,6 +101,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closePopupWithEsc);
   document.addEventListener('click', closePopupWithOverlay);
+  ResetInputError(popup, selectors);
 };
 
 //Close Popup//
