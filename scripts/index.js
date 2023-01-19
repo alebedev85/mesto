@@ -65,7 +65,11 @@ function creatCard(titleCard, imageCard) {
 
 //Rendering Card//
 function renderCard(titleCard, imageCard) {
-  cardsContainer.prepend(creatCard(titleCard, imageCard));
+  const card = new Card(titleCard, imageCard, 'element-temlate');
+  console.log(card)
+  console.log(card.creatCard())
+  cardsContainer.prepend(card.creatCard());
+  // cardsContainer.prepend(creatCard(titleCard, imageCard));
 }
 
 //Like Card//
