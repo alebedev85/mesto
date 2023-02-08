@@ -1,3 +1,5 @@
+// import {Card} from './Card.js';
+
 //VARS//
 
 //Cards//
@@ -40,42 +42,40 @@ const profileJob = document.querySelector('.profile__job');
 
 //Creat Card//
 function creatCard(titleCard, imageCard) {
-  const card = cardTemplate.cloneNode(true);
-  const cardImage = card.querySelector('.element__image');
-  const cardTitle = card.querySelector('.element__title');
+  // const card = cardTemplate.cloneNode(true);
+  // const cardImage = card.querySelector('.element__image');
+  // const cardTitle = card.querySelector('.element__title');
 
-  cardImage.addEventListener('click', () => {
-    imagePicturPopup.src = cardImage.src;
-    imagePicturPopup.alt = `Фото ${cardTitle}`;
-    titlePicturPopup.textContent = cardTitle.textContent;
-    openPopup(popupPicture);
-  });
+  // cardImage.addEventListener('click', () => {
+  //   imagePicturPopup.src = cardImage.src;
+  //   imagePicturPopup.alt = `Фото ${cardTitle}`;
+  //   titlePicturPopup.textContent = cardTitle.textContent;
+  //   openPopup(popupPicture);
+  // });
 
-  const buttonLike = card.querySelector('.element__reaction-button');
-  buttonLike.addEventListener('click', () => setLike(buttonLike));
+  // const buttonLike = card.querySelector('.element__reaction-button');
+  // buttonLike.addEventListener('click', () => setLike(buttonLike));
 
-  const buttonTrash = card.querySelector('.element__trash-button');
-  buttonTrash.addEventListener('click', () => card.remove());
+  // const buttonTrash = card.querySelector('.element__trash-button');
+  // buttonTrash.addEventListener('click', () => card.remove());
 
-  cardTitle.textContent = titleCard;
-  cardImage.src = imageCard;
-  cardImage.alt = `Фото ${titleCard}`;
-  return card;
+  // cardTitle.textContent = titleCard;
+  // cardImage.src = imageCard;
+  // cardImage.alt = `Фото ${titleCard}`;
+  // return card;
 }
 
 //Rendering Card//
 function renderCard(titleCard, imageCard) {
-  const card = new Card(titleCard, imageCard, 'element-temlate');
-  console.log(card)
-  console.log(card.creatCard())
+  const card = new Card(titleCard, imageCard, '.element-temlate', openPopup);
   cardsContainer.prepend(card.creatCard());
   // cardsContainer.prepend(creatCard(titleCard, imageCard));
 }
 
 //Like Card//
-function setLike(element) {
-  element.classList.toggle('element__reaction-button_activ')
-}
+// function setLike(element) {
+//   element.classList.toggle('element__reaction-button_activ')
+// }
 
 //Creat Cards From Array//
 function creatCardsFromArray() {
