@@ -1,4 +1,6 @@
-// import {Card} from './Card.js';
+import Card from './Card.js';
+import initialCards from './cards.js';
+import selectors from './selectors.js';
 
 //VARS//
 
@@ -41,7 +43,7 @@ const profileJob = document.querySelector('.profile__job');
 //FUNCTIONS//
 
 //Creat Card//
-function creatCard(titleCard, imageCard) {
+//function creatCard(titleCard, imageCard) {
   // const card = cardTemplate.cloneNode(true);
   // const cardImage = card.querySelector('.element__image');
   // const cardTitle = card.querySelector('.element__title');
@@ -63,7 +65,7 @@ function creatCard(titleCard, imageCard) {
   // cardImage.src = imageCard;
   // cardImage.alt = `Фото ${titleCard}`;
   // return card;
-}
+//}
 
 //Rendering Card//
 function renderCard(titleCard, imageCard) {
@@ -164,3 +166,5 @@ formEddCard.addEventListener('submit', (evt) => {
 
 //Creat Cards From Array//
 creatCardsFromArray();
+
+export {imagePicturPopup, titlePicturPopup, popupPicture}

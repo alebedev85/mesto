@@ -1,4 +1,6 @@
-class Card {
+import {imagePicturPopup, titlePicturPopup, popupPicture} from './index.js';
+
+export default class Card {
   constructor(titleCard, imageCard, templatSelector, openPopup) {
     this._titleCard = titleCard;
     this._imageCard = imageCard;
@@ -27,7 +29,6 @@ class Card {
     const cardTitle = this._element.querySelector('.element__title');
 
     cardImage.addEventListener('click', () => {
-      console.log('1')
       imagePicturPopup.src = cardImage.src;
       imagePicturPopup.alt = `Фото ${cardTitle}`;
       titlePicturPopup.textContent = cardTitle.textContent;
@@ -38,7 +39,7 @@ class Card {
     buttonLike.addEventListener('click', () => this._setLike(buttonLike));
 
     const buttonTrash = this._element.querySelector('.element__trash-button');
-    buttonTrash.addEventListener('click', () => card.remove());
+    buttonTrash.addEventListener('click', () => this._element.remove());
 
     cardTitle.textContent = this._titleCard;
     cardImage.src = this._imageCard;
