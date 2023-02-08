@@ -1,15 +1,16 @@
 import Card from './Card.js';
 import initialCards from './cards.js';
 import selectors from './selectors.js';
+import FormValidator from './FormValidator.js';
 
 //VARS//
 
 //Cards//
 const cardsContainer = document.querySelector('.elements')
-const cardTemplate = document
-  .querySelector('.element-temlate')
-  .content
-  .querySelector('.element');
+// const cardTemplate = document
+//   .querySelector('.element-temlate')
+//   .content
+//   .querySelector('.element');
 
 //Main Buttons//
 const buttonEditProfile = document.querySelector('.profile__edit-button');
@@ -44,27 +45,27 @@ const profileJob = document.querySelector('.profile__job');
 
 //Creat Card//
 //function creatCard(titleCard, imageCard) {
-  // const card = cardTemplate.cloneNode(true);
-  // const cardImage = card.querySelector('.element__image');
-  // const cardTitle = card.querySelector('.element__title');
+// const card = cardTemplate.cloneNode(true);
+// const cardImage = card.querySelector('.element__image');
+// const cardTitle = card.querySelector('.element__title');
 
-  // cardImage.addEventListener('click', () => {
-  //   imagePicturPopup.src = cardImage.src;
-  //   imagePicturPopup.alt = `Фото ${cardTitle}`;
-  //   titlePicturPopup.textContent = cardTitle.textContent;
-  //   openPopup(popupPicture);
-  // });
+// cardImage.addEventListener('click', () => {
+//   imagePicturPopup.src = cardImage.src;
+//   imagePicturPopup.alt = `Фото ${cardTitle}`;
+//   titlePicturPopup.textContent = cardTitle.textContent;
+//   openPopup(popupPicture);
+// });
 
-  // const buttonLike = card.querySelector('.element__reaction-button');
-  // buttonLike.addEventListener('click', () => setLike(buttonLike));
+// const buttonLike = card.querySelector('.element__reaction-button');
+// buttonLike.addEventListener('click', () => setLike(buttonLike));
 
-  // const buttonTrash = card.querySelector('.element__trash-button');
-  // buttonTrash.addEventListener('click', () => card.remove());
+// const buttonTrash = card.querySelector('.element__trash-button');
+// buttonTrash.addEventListener('click', () => card.remove());
 
-  // cardTitle.textContent = titleCard;
-  // cardImage.src = imageCard;
-  // cardImage.alt = `Фото ${titleCard}`;
-  // return card;
+// cardTitle.textContent = titleCard;
+// cardImage.src = imageCard;
+// cardImage.alt = `Фото ${titleCard}`;
+// return card;
 //}
 
 //Rendering Card//
@@ -167,4 +168,14 @@ formEddCard.addEventListener('submit', (evt) => {
 //Creat Cards From Array//
 creatCardsFromArray();
 
-export {imagePicturPopup, titlePicturPopup, popupPicture}
+const enableValidation = ({ formSelector, ...rest }) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, rest);
+    validator.enableValidation();
+  });
+};
+
+enableValidation(selectors)
+
+export { imagePicturPopup, titlePicturPopup, popupPicture }
