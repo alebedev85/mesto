@@ -129,6 +129,15 @@ function handleAddFormSubmit(evt) {
   renderCard(cardNameImput.value, cardLinkImput.value);
 };
 
+//Form Validation//
+function enableValidation ({ formSelector, ...rest }) {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, rest);
+    validator.enableValidation();
+  });
+};
+
 //Add Event Listeners//
 
 //Open Edit Popup//
@@ -168,14 +177,7 @@ formEddCard.addEventListener('submit', (evt) => {
 //Creat Cards From Array//
 creatCardsFromArray();
 
-const enableValidation = ({ formSelector, ...rest }) => {
-  const formList = Array.from(document.querySelectorAll(formSelector));
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(formElement, rest);
-    validator.enableValidation();
-  });
-};
-
+//Launch Form Validation//
 enableValidation(selectors)
 
 export { imagePicturPopup, titlePicturPopup, popupPicture }
