@@ -1,9 +1,11 @@
+import {imagePicturPopup, titlePicturPopup, popupPicture} from './utils.js';
 import Card from './Card.js';
 import initialCards from './cards.js';
 import selectors from './selectors.js';
 import FormValidator from './FormValidator.js';
 
 //VARS//
+const formsDic = {};
 
 //Cards//
 const cardsContainer = document.querySelector('.elements')
@@ -27,15 +29,14 @@ const cardNameImput = formEddCard.querySelector('.popup__input_input_place');
 const cardLinkImput = formEddCard.querySelector('.popup__input_input_link');
 
 //Picture popup//
-const popupPicture = document.querySelector('.popup_type_picture');
-const imagePicturPopup = popupPicture.querySelector('.popup__picture');
-const titlePicturPopup = popupPicture.querySelector('.popup__picture-title');
+// const popupPicture = document.querySelector('.popup_type_picture');
+// const imagePicturPopup = popupPicture.querySelector('.popup__picture');
+// const titlePicturPopup = popupPicture.querySelector('.popup__picture-title');
 const buttonClosePicturePopup = popupPicture.querySelector('.popup__close-button');
 
 //Profile//
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-
 
 //FUNCTIONS//
 
@@ -43,7 +44,6 @@ const profileJob = document.querySelector('.profile__job');
 function renderCard(titleCard, imageCard) {
   const card = new Card(titleCard, imageCard, '.element-temlate', openPopup);
   cardsContainer.prepend(card.creatCard());
-  // cardsContainer.prepend(creatCard(titleCard, imageCard));
 }
 
 //Creat Cards From Array//
@@ -72,11 +72,11 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closePopupWithEsc);
   document.addEventListener('click', closePopupWithOverlay);
-  // ResetInputError(popup, selectors);
+  formsDic[popup.querySelector(selectors.formSelector).name].ResetInputError();
 };
 
 //Close Popup//
-function closePopup(popup, evt) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keyup', closePopupWithEsc);
   document.removeEventListener('click', closePopupWithOverlay);
@@ -99,8 +99,8 @@ function handleAddFormSubmit(evt) {
 function enableValidation ({ formSelector, ...rest }) {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
-    const validator = new FormValidator(formElement, rest);
-    validator.enableValidation();
+    formsDic[formElement.name]  = new FormValidator(formElement, rest);
+    formsDic[formElement.name].enableValidation();
   });
 };
 

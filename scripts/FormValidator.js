@@ -58,6 +58,15 @@ export default class FormValidator {
     });
   };
 
+  //Reset Input Error//
+  ResetInputError() {
+    const inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
+    inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement, this._selectors);
+    });
+    this._toggleButtonState(inputList, this._selectors)
+  };
+
   enableValidation() {
     this._setEventListeners(this._selectors)
   };
