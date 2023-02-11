@@ -1,11 +1,11 @@
-import {imagePicturPopup, titlePicturPopup, popupPicture} from './utils.js';
+import { imagePicturPopup, titlePicturPopup, popupPicture } from './utils.js';
 import Card from './Card.js';
 import initialCards from './cards.js';
 import selectors from './selectors.js';
 import FormValidator from './FormValidator.js';
 
 //VARS//
-const formsDic = {};
+const formsCollection = {};
 
 //Cards//
 const cardsContainer = document.querySelector('.elements')
@@ -29,9 +29,6 @@ const cardNameImput = formEddCard.querySelector('.popup__input_input_place');
 const cardLinkImput = formEddCard.querySelector('.popup__input_input_link');
 
 //Picture popup//
-// const popupPicture = document.querySelector('.popup_type_picture');
-// const imagePicturPopup = popupPicture.querySelector('.popup__picture');
-// const titlePicturPopup = popupPicture.querySelector('.popup__picture-title');
 const buttonClosePicturePopup = popupPicture.querySelector('.popup__close-button');
 
 //Profile//
@@ -72,7 +69,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closePopupWithEsc);
   document.addEventListener('click', closePopupWithOverlay);
-  formsDic[popup.querySelector(selectors.formSelector).name].ResetInputError();
+  formsCollection[popup.querySelector(selectors.formSelector).name].ResetInputError();
 };
 
 //Close Popup//
@@ -96,11 +93,11 @@ function handleAddFormSubmit(evt) {
 };
 
 //Form Validation//
-function enableValidation ({ formSelector, ...rest }) {
+function enableValidation({ formSelector, ...rest }) {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
-    formsDic[formElement.name]  = new FormValidator(formElement, rest);
-    formsDic[formElement.name].enableValidation();
+    formsCollection[formElement.name] = new FormValidator(formElement, rest);
+    formsCollection[formElement.name].enableValidation();
   });
 };
 
@@ -145,5 +142,3 @@ creatCardsFromArray();
 
 //Launch Form Validation//
 enableValidation(selectors)
-
-export { imagePicturPopup, titlePicturPopup, popupPicture }
