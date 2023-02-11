@@ -1,3 +1,5 @@
+import { imagePicturPopup, titlePicturPopup, popupPicture } from './utils.js';
+
 export default class Card {
   constructor(titleCard, imageCard, templatSelector, openPopup) {
     this._titleCard = titleCard;
@@ -5,7 +7,6 @@ export default class Card {
     this._templatSelector = templatSelector;
     this._openPopup = openPopup;
   }
-
 
   _getTemplate() {
     const card = document

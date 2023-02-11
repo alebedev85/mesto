@@ -1,4 +1,4 @@
-import { imagePicturPopup, titlePicturPopup, popupPicture } from './utils.js';
+import { popupPicture } from './utils.js';
 import Card from './Card.js';
 import initialCards from './cards.js';
 import selectors from './selectors.js';
@@ -69,7 +69,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closePopupWithEsc);
   document.addEventListener('click', closePopupWithOverlay);
-  formsCollection[popup.querySelector(selectors.formSelector).name].ResetInputError();
+  if (popup.querySelector(selectors.formSelector)) formsCollection[popup.querySelector(selectors.formSelector).name].ResetInputError();
 };
 
 //Close Popup//
