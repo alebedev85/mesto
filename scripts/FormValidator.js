@@ -61,7 +61,7 @@ export default class FormValidator {
   //Reset Input Error//
   resetInputError() {
     this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement, this._selectors);
+      this._hideInputError(inputElement);
     });
     this._toggleButtonState()
   };
