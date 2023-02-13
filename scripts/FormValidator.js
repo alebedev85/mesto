@@ -3,6 +3,7 @@ export default class FormValidator {
     this._formElement = formElement;
     this._selectors = selectors;
     this._buttonElement = this._formElement.querySelector(this._selectors.submitButtonSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
   }
 
   //Show Input Error//
@@ -31,15 +32,15 @@ export default class FormValidator {
   };
 
   //Check Validity for Button//
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })
   }
 
   //Set State of Button//
-  _toggleButtonState(inputList) {
-    if (this._hasInvalidInput(inputList)) {
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._selectors.inactiveButtonClass);
     } else {
       this._buttonElement.classList.remove(this._selectors.inactiveButtonClass);
@@ -48,23 +49,21 @@ export default class FormValidator {
 
   //Set Event Listeners on Inputs and Set State of Button//
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
-    this._toggleButtonState(inputList);
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList);
+        this._toggleButtonState();
       });
     });
   };
 
   //Reset Input Error//
-  ResetInputError() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
-    inputList.forEach((inputElement) => {
+  resetInputError() {
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement, this._selectors);
     });
-    this._toggleButtonState(inputList, this._selectors)
+    this._toggleButtonState()
   };
 
   enableValidation() {

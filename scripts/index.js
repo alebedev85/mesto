@@ -69,7 +69,6 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keyup', closePopupWithEsc);
   document.addEventListener('click', closePopupWithOverlay);
-  if (popup.querySelector(selectors.formSelector)) formsCollection[popup.querySelector(selectors.formSelector).name].ResetInputError();
 };
 
 //Close Popup//
@@ -105,16 +104,20 @@ function enableValidation({ formSelector, ...rest }) {
 
 //Open Edit Popup//
 buttonEditProfile.addEventListener('click', () => {
-  openPopup(popupEditProfile);
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
+  formsCollection['formEditProfile'].resetInputError();
+  openPopup(popupEditProfile);
 });
 
 //Close Edit Popup//
 buttonClosePopupEditProfile.addEventListener('click', () => closePopup(popupEditProfile));
 
 //Open Add Popup//
-buttonAddNewCard.addEventListener('click', () => openPopup(popupAddCard));
+buttonAddNewCard.addEventListener('click', () => {
+  formsCollection['formAddCard'].resetInputError();
+  openPopup(popupAddCard);
+});
 
 //Close Add Popup//
 buttonClosePopupAddCard.addEventListener('click', () => closePopup(popupAddCard));
