@@ -1,5 +1,6 @@
 import { imagePicturPopup, titlePicturPopup, popupPicture } from './utils.js';
 
+//Return document object of card///
 export default class Card {
   constructor(titleCard, imageCard, templatSelector, openPopup) {
     this._titleCard = titleCard;
@@ -7,7 +8,7 @@ export default class Card {
     this._templatSelector = templatSelector;
     this._openPopup = openPopup;
   }
-
+  //Get template, return template//
   _getTemplate() {
     const card = document
       .querySelector(this._templatSelector)
@@ -18,15 +19,18 @@ export default class Card {
     return card;
   }
 
+  //Set like//
   _setLike(element) {
     element.classList.toggle('element__reaction-button_activ')
   }
 
+  //Delete card//
   _deleteCard() {
     this._element.remove();
     this._element = null;
   }
 
+  //Creat card, return complete element//
   creatCard() {
     this._element = this._getTemplate();
     const cardImage = this._element.querySelector('.element__image');
@@ -50,5 +54,4 @@ export default class Card {
     cardImage.alt = `Фото ${this._titleCard}`;
     return this._element;
   }
-
 }
