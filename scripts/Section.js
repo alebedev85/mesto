@@ -8,15 +8,12 @@ export default class Section{
     this._cardsContainer = document.querySelector(selector);
   }
 
-  _renderCard(titleCard, imageCard) {
-    const card = new Card(titleCard, imageCard, '.element-temlate', openPopup);
-    this._cardsContainer.prepend(card.creatCard());
-  }
-
+  ///Render all elemants///
   creatCards() {
-    this._items.forEach((item) => this._renderCard(item.name, item.link))
+    this._items.forEach((item) => this._renderer(item.name, item.link))
   }
 
+  ///Add DOM-element in container///
   addItem(element) {
     this._cardsContainer.prepend(element.creatCard());
   }
