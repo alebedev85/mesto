@@ -1,11 +1,9 @@
-import Card from './Card.js';
-
 ///Rendering all elements///
 export default class Section{
-  constructor(object, selector){
+  constructor(object, containerSelector){
     this._items = object.items;
     this._renderer = object.renderer;
-    this._cardsContainer = document.querySelector(selector);
+    this._cardsContainer = document.querySelector(containerSelector);
   }
 
   ///Render all elemants///

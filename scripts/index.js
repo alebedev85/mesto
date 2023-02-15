@@ -3,9 +3,11 @@ import Card from './Card.js';
 import initialCards from './cards.js';
 import selectors from './selectors.js';
 import FormValidator from './FormValidator.js';
+import { Popup } from './Popup.js';
 
 //VARS//
 const formsCollection = {};
+const popupAddCard = new Popup('.popup_type_add');
 
 //Cards//
 const cardsContainer = document.querySelector('.elements')
@@ -22,11 +24,11 @@ const profileNameInput = formEditProfile.querySelector('.popup__input_input_name
 const profileJobInput = formEditProfile.querySelector('.popup__input_input_job');
 
 //Edd Card Popup//
-const popupAddCard = document.querySelector('.popup_type_add');
-const buttonClosePopupAddCard = popupAddCard.querySelector('.popup__close-button');
-const formEddCard = popupAddCard.querySelector('.popup__form');
-const cardNameImput = formEddCard.querySelector('.popup__input_input_place');
-const cardLinkImput = formEddCard.querySelector('.popup__input_input_link');
+// const popupAddCard = document.querySelector('.popup_type_add');
+// const buttonClosePopupAddCard = popupAddCard.querySelector('.popup__close-button');
+// const formEddCard = popupAddCard.querySelector('.popup__form');
+// const cardNameImput = formEddCard.querySelector('.popup__input_input_place');
+// const cardLinkImput = formEddCard.querySelector('.popup__input_input_link');
 
 //Picture popup//
 const buttonClosePicturePopup = popupPicture.querySelector('.popup__close-button');
@@ -116,11 +118,12 @@ buttonClosePopupEditProfile.addEventListener('click', () => closePopup(popupEdit
 //Open Add Popup//
 buttonAddNewCard.addEventListener('click', () => {
   formsCollection['formAddCard'].resetInputError();
-  openPopup(popupAddCard);
+  popupAddCard.open()
+  // openPopup(popupAddCard);
 });
 
-//Close Add Popup//
-buttonClosePopupAddCard.addEventListener('click', () => closePopup(popupAddCard));
+// //Close Add Popup//
+// buttonClosePopupAddCard.addEventListener('click', () => closePopup(popupAddCard));
 
 //Close Edit Picture//
 buttonClosePicturePopup.addEventListener('click', () => closePopup(popupPicture));
@@ -132,11 +135,11 @@ formEditProfile.addEventListener('submit', (evt) => {
 });
 
 //Submit Edd Card//
-formEddCard.addEventListener('submit', (evt) => {
-  handleAddFormSubmit(evt);
-  closePopup(popupAddCard);
-  evt.target.reset();
-});
+// formEddCard.addEventListener('submit', (evt) => {
+//   handleAddFormSubmit(evt);
+//   closePopup(popupAddCard);
+//   evt.target.reset();
+// });
 
 //Main Funtions//
 
