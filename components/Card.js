@@ -3,7 +3,7 @@ import PopupWithImage from './PopupWithImage.js';
 
 //Return document object of card///
 export default class Card {
-  constructor(titleCard, imageCard, templatSelector, openPopup) {
+  constructor(titleCard, imageCard, templatSelector) {
     this._titleCard = titleCard;
     this._imageCard = imageCard;
     this._templatSelector = templatSelector;

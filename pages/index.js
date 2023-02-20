@@ -1,9 +1,10 @@
-import { popupPicture } from '../scripts/utils.js';
-import Card from '../components/Card.js';
+import { popupPicture } from '../scripts/constants.js';
+import { renderCard } from '../scripts/utils.js';
 import initialCards from '../scripts/cards.js';
 import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
 import Popup from '../components/Popup.js';
+import Section from '../components/Section.js';
 
 //VARS//
 const formsCollection = {};
@@ -40,17 +41,6 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
 //FUNCTIONS//
-
-//Rendering Card//
-function renderCard(titleCard, imageCard) {
-  const card = new Card(titleCard, imageCard, '.element-temlate', openPopup);
-  cardsContainer.prepend(card.creatCard());
-}
-
-//Creat Cards From Array//
-function creatCardsFromArray() {
-  initialCards.forEach((item) => renderCard(item.name, item.link))
-}
 
 //Close Popup with Esc//
 function closePopupWithEsc(evt) {
@@ -146,7 +136,12 @@ formEditProfile.addEventListener('submit', (evt) => {
 //Main Funtions//
 
 //Creat Cards From Array//
-creatCardsFromArray();
+const CardsSection = new Section({
+  items: initialCards,
+  renderer: renderCard
+},
+  '.elements')
+CardsSection.rendererElements()
 
 //Launch Form Validation//
 enableValidation(selectors)
