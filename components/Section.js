@@ -8,7 +8,7 @@ export default class Section{
 
   ///Render all elemants///
   rendererElements() {
-    this._items.forEach((item) => this._renderer(item.name, item.link))
+    this._items.forEach((item) => this._renderer(item))
   }
 
   ///Add DOM-element in container///
