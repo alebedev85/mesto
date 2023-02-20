@@ -1,9 +1,9 @@
-import { popupPicture } from './utils.js';
-import Card from './Card.js';
-import initialCards from './cards.js';
-import selectors from './selectors.js';
-import FormValidator from './FormValidator.js';
-import Popup from './Popup.js';
+import { popupPicture } from '../scripts/utils.js';
+import Card from '../components/Card.js';
+import initialCards from '../scripts/cards.js';
+import selectors from '../scripts/selectors.js';
+import FormValidator from '../components/FormValidator.js';
+import Popup from '../components/Popup.js';
 
 //VARS//
 const formsCollection = {};
