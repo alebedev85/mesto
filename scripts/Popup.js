@@ -67,37 +67,37 @@ export class PopupWithForm extends Popup {
 
 /////////////////////////////////////////////////////////
 
-//Handle Edit Form//
-function handleEditFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileJob.textContent = profileJobInput.value;
-};
+// //Handle Edit Form//
+// function handleEditFormSubmit(evt) {
+//   evt.preventDefault();
+//   profileName.textContent = profileNameInput.value;
+//   profileJob.textContent = profileJobInput.value;
+// };
 
-//Handle Add Form//
-function handleAddFormSubmit(evt) {
-  evt.preventDefault();
-  renderCard(cardNameImput.value, cardLinkImput.value);
-};
+// //Handle Add Form//
+// function handleAddFormSubmit(evt) {
+//   evt.preventDefault();
+//   renderCard(cardNameImput.value, cardLinkImput.value);
+// };
 
-//Form Validation//
-function enableValidation({ formSelector, ...rest }) {
-  const formList = Array.from(document.querySelectorAll(formSelector));
-  formList.forEach((formElement) => {
-    formsCollection[formElement.name] = new FormValidator(formElement, rest);
-    formsCollection[formElement.name].enableValidation();
-  });
-};
+// //Form Validation//
+// function enableValidation({ formSelector, ...rest }) {
+//   const formList = Array.from(document.querySelectorAll(formSelector));
+//   formList.forEach((formElement) => {
+//     formsCollection[formElement.name] = new FormValidator(formElement, rest);
+//     formsCollection[formElement.name].enableValidation();
+//   });
+// };
 
-//Submit Edit Profile//
-formEditProfile.addEventListener('submit', (evt) => {
-  handleEditFormSubmit(evt);
-  closePopup(popupEditProfile);
-});
+// //Submit Edit Profile//
+// formEditProfile.addEventListener('submit', (evt) => {
+//   handleEditFormSubmit(evt);
+//   closePopup(popupEditProfile);
+// });
 
-///Submit Edd Card//
-formEddCard.addEventListener('submit', (evt) => {
-  handleAddFormSubmit(evt);
-  closePopup(popupAddCard);
-  evt.target.reset();
-});
+// ///Submit Edd Card//
+// formEddCard.addEventListener('submit', (evt) => {
+//   handleAddFormSubmit(evt);
+//   closePopup(popupAddCard);
+//   evt.target.reset();
+// });
