@@ -3,7 +3,7 @@ import Card from './Card.js';
 import initialCards from './cards.js';
 import selectors from './selectors.js';
 import FormValidator from './FormValidator.js';
-import { Popup } from './Popup.js';
+import Popup from './Popup.js';
 
 //VARS//
 const formsCollection = {};
