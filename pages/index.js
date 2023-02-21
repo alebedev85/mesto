@@ -4,6 +4,8 @@ import initialCards from '../scripts/cards.js';
 import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
 import Popup from '../components/Popup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 
 //VARS//
@@ -97,15 +99,15 @@ function enableValidation({ formSelector, ...rest }) {
 //Add Event Listeners//
 
 //Open Edit Popup//
-buttonEditProfile.addEventListener('click', () => {
-  profileNameInput.value = profileName.textContent;
-  profileJobInput.value = profileJob.textContent;
-  formsCollection['formEditProfile'].resetInputError();
-  openPopup(popupEditProfile);
-});
+// buttonEditProfile.addEventListener('click', () => {
+//   profileNameInput.value = profileName.textContent;
+//   profileJobInput.value = profileJob.textContent;
+//   formsCollection['formEditProfile'].resetInputError();
+//   openPopup(popupEditProfile);
+// });
 
 //Close Edit Popup//
-buttonClosePopupEditProfile.addEventListener('click', () => closePopup(popupEditProfile));
+// buttonClosePopupEditProfile.addEventListener('click', () => closePopup(popupEditProfile));
 
 //Open Add Popup//
 buttonAddNewCard.addEventListener('click', () => {
@@ -145,3 +147,15 @@ CardsSection.rendererElements()
 
 //Launch Form Validation//
 enableValidation(selectors)
+
+const EditProfile = new PopupWithForm('.popup_type_edit', handleEditFormSubmit)
+
+buttonEditProfile.addEventListener('click', () => {
+  profileNameInput.value = profileName.textContent;
+  profileJobInput.value = profileJob.textContent;
+  formsCollection['formEditProfile'].resetInputError();
+  EditProfile.open();
+});
+
+//Close Edit Popup//
+buttonClosePopupEditProfile.addEventListener('click', () => EditProfile.close());

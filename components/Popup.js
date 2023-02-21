@@ -1,5 +1,3 @@
-import FormValidator from './FormValidator.js';
-
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
@@ -19,12 +17,10 @@ export default class Popup {
     this._popup.classList.add('popup_opened');
     this._setEventListeners();
     document.addEventListener('keyup', this._handleEscClose.bind(this));
-    // document.addEventListener('click', closePopupWithOverlay);
   }
 
   close() {
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keyup', this._handleEscClose);
-    // document.removeEventListener('click', closePopupWithOverlay);
   }
 }

@@ -1,4 +1,3 @@
-// import { imagePicturPopup, titlePicturPopup, popupPicture } from './utils.js';
 import PopupWithImage from './PopupWithImage.js';
 
 //Return document object of card///
