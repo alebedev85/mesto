@@ -1,11 +1,11 @@
-import { popupPicture } from '../scripts/constants.js';
-import initialCards from '../scripts/cards.js';
-import selectors from '../scripts/selectors.js';
-import FormValidator from '../components/FormValidator.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import Section from '../components/Section.js';
-import Card from '../components/Card.js'
+import { popupPicture } from './scripts/constants.js';
+import initialCards from './scripts/cards.js';
+import selectors from './scripts/selectors.js';
+import FormValidator from './components/FormValidator.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import Section from './components/Section.js';
+import Card from './components/Card.js'
 
 //VARS//
 const formsCollection = {};
