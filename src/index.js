@@ -1,3 +1,4 @@
+import './pages/index.css';
 import { popupPicture } from './scripts/constants.js';
 import initialCards from './scripts/cards.js';
 import selectors from './scripts/selectors.js';
