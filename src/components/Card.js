@@ -38,11 +38,7 @@ export default class Card {
     const cardTitle = this._element.querySelector('.element__title');
 
     cardImage.addEventListener('click', () => {
-      this._popup.open(cardImage, cardTitle);
-      // imagePicturPopup.src = cardImage.src;
-      // imagePicturPopup.alt = `Фото ${cardTitle}`;
-      // titlePicturPopup.textContent = cardTitle.textContent;
-      // this._openPopup(popupPicture);
+      this._handleCardClick();
     });
 
     const buttonLike = this._element.querySelector('.element__reaction-button');

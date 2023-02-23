@@ -1,5 +1,5 @@
 import './pages/index.css';
-import { popupPicture } from './scripts/constants.js';
+import { popupPicture, imagePicturPopup, titlePicturPopup } from './scripts/constants.js';
 import initialCards from './scripts/cards.js';
 import selectors from './scripts/selectors.js';
 import FormValidator from './components/FormValidator.js';
@@ -57,10 +57,10 @@ function enableValidation({ formSelector, ...rest }) {
 
 function renderCard({ name, link }) {
   const card = new Card(name, link, '.element-temlate', () => {
-    imagePicturPopup.src = cardImage.src;
-    imagePicturPopup.alt = `Фото ${cardTitle}`;
-    titlePicturPopup.textContent = cardTitle.textContent;
-
+    // imagePicturPopup.src = cardImage.src;
+    // imagePicturPopup.alt = `Фото ${cardTitle}`;
+    // titlePicturPopup.textContent = cardTitle.textContent;
+    popupWithImage.open(name, link);
   });
   this._cardsContainer.prepend(card.creatCard());
 }
@@ -82,7 +82,7 @@ const editProfile = new PopupWithForm('.popup_type_edit', (evt) => {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
-  })
+})
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
@@ -113,7 +113,7 @@ buttonClosePopupAddCard.addEventListener('click', () => addCard.close());
 
 ///Popup With Image///
 //Creat element//
-const popupWithImage = new PopupWithImage('.popup_type_add')
+const popupWithImage = new PopupWithImage('.popup_type_picture')
 
 //Set listener for close edit form//
 buttonClosePicturePopup.addEventListener('click', () => popupWithImage.close());
