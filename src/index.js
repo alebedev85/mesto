@@ -7,10 +7,10 @@ import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import Section from './components/Section.js';
 import Card from './components/Card.js'
+import UserInfo from './components/UserInfo.js';
 
 //VARS//
 const formsCollection = {};
-// const popupAddCard = new Popup('.popup_type_add');
 
 //Cards//
 // const cardsContainer = document.querySelector('.elements')
@@ -58,23 +58,28 @@ function enableValidation({ formSelector, ...rest }) {
 //Creat Cards From Array//
 const CardsSection = new Section({
   items: initialCards,
-  renderer: ({name, link}) => {
+  renderer: ({ name, link }) => {
     const card = new Card(name, link, '.element-temlate', () => {
       popupWithImage.open(name, link);
     });
     return card.creatCard();
-  }},
+  }
+},
   '.elements')
 CardsSection.rendererElements()
 
 //Launch Form Validation//
 enableValidation(selectors)
 
+
+const userInfo = new UserInfo({
+  selectorUserName: '.profile__name',
+  selectorUserInfo: '.profile__job'});
+
 ///Form edit profile///
 //Creat element//
-const editProfile = new PopupWithForm('.popup_type_edit', () => {
-  profileName.textContent = profileNameInput.value;
-  profileJob.textContent = profileJobInput.value;
+const editProfile = new PopupWithForm('.popup_type_edit', (data) => {
+  userInfo.setUserInfo(data);
 })
 
 //Set listener for open edit form//
@@ -91,7 +96,7 @@ buttonClosePopupEditProfile.addEventListener('click', () => editProfile.close())
 
 ///Form add new card///
 //Creat element//
-const addCard = new PopupWithForm('.popup_type_add', ({cardLinkImput : link, cardNameImput : name}) => {
+const addCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
   const newCard = new Card(name, link, '.element-temlate', () => {
     popupWithImage.open(name, link);
   });
