@@ -1,4 +1,4 @@
-import './pages/index.css';
+// import './pages/index.css';
 import { popupPicture, imagePicturPopup, titlePicturPopup } from './scripts/constants.js';
 import initialCards from './scripts/cards.js';
 import selectors from './scripts/selectors.js';
@@ -78,8 +78,7 @@ enableValidation(selectors)
 
 ///Form edit profile///
 //Creat element//
-const editProfile = new PopupWithForm('.popup_type_edit', (evt) => {
-  evt.preventDefault();
+const editProfile = new PopupWithForm('.popup_type_edit', () => {
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
 })
@@ -98,8 +97,11 @@ buttonClosePopupEditProfile.addEventListener('click', () => editProfile.close())
 
 ///Form add new card///
 //Creat element//
-const addCard = new PopupWithForm('.popup_type_add', (evt) => {
-  renderCard(cardNameImput.value, cardLinkImput.value);
+const addCard = new PopupWithForm('.popup_type_add', ({cardLinkImput : link, cardNameImput : name}) => {
+  const newCard = new Card(name, link, '.element-temlate', () => {
+    popupWithImage.open(name, link);
+  });
+  CardsSection.addItem(newCard.creatCard());
 })
 
 //Set listener for open add new card form//
