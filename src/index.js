@@ -55,21 +55,15 @@ function enableValidation({ formSelector, ...rest }) {
 
 //Main Funtions//
 
-function renderCard({ name, link }) {
-  const card = new Card(name, link, '.element-temlate', () => {
-    // imagePicturPopup.src = cardImage.src;
-    // imagePicturPopup.alt = `Фото ${cardTitle}`;
-    // titlePicturPopup.textContent = cardTitle.textContent;
-    popupWithImage.open(name, link);
-  });
-  this._cardsContainer.prepend(card.creatCard());
-}
-
 //Creat Cards From Array//
 const CardsSection = new Section({
   items: initialCards,
-  renderer: renderCard
-},
+  renderer: ({name, link}) => {
+    const card = new Card(name, link, '.element-temlate', () => {
+      popupWithImage.open(name, link);
+    });
+    return card.creatCard();
+  }},
   '.elements')
 CardsSection.rendererElements()
 
