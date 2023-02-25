@@ -1,14 +1,10 @@
-import './pages/index.css';
+// import './pages/index.css';
 import {
   buttonEditProfile,
   buttonAddNewCard,
   buttonClosePopupEditProfile,
   buttonClosePopupAddCard,
   buttonClosePicturePopup,
-  profileNameInput,
-  profileJobInput,
-  profileName,
-  profileJob
 } from './scripts/constants.js';
 import initialCards from './scripts/cards.js';
 import selectors from './scripts/selectors.js';
@@ -45,13 +41,13 @@ const popupWithImage = new PopupWithImage('.popup_type_picture')
 
 ///Form edit profile///
 //Creat element//
-const editProfile = new PopupWithForm('.popup_type_edit', (data) => {
+const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
   userInfo.setUserInfo(data);
 })
 
 ///Form add new card///
 //Creat element//
-const addCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
+const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
   const newCard = new Card(name, link, '.element-temlate', () => {
     popupWithImage.open(name, link);
   });
@@ -79,21 +75,21 @@ CardsSection.rendererElements()
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
   formsCollection['formEditProfile'].resetInputError();
-  editProfile.setInputValues(userInfo.getUserInfo());
-  editProfile.open();
+  popupEditProfile.setInputValues(userInfo.getUserInfo());
+  popupEditProfile.open();
 })
 
 //Set listener for close edit form//
-buttonClosePopupEditProfile.addEventListener('click', () => editProfile.close());
+buttonClosePopupEditProfile.addEventListener('click', () => popupEditProfile.close());
 
 //Set listener for open add new card form//
 buttonAddNewCard.addEventListener('click', () => {
   formsCollection['formAddCard'].resetInputError();
-  addCard.open()
+  popupAddCard.open()
 });
 
 //Set listener for close edit form//
-buttonClosePopupAddCard.addEventListener('click', () => addCard.close());
+buttonClosePopupAddCard.addEventListener('click', () => popupAddCard.close());
 
 //Set listener for close edit form//
 buttonClosePicturePopup.addEventListener('click', () => popupWithImage.close());
