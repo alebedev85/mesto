@@ -1,19 +1,19 @@
-import './pages/index.css';
+import './index.css';
 import {
   buttonEditProfile,
   buttonAddNewCard,
   buttonClosePopupEditProfile,
   buttonClosePopupAddCard,
   buttonClosePicturePopup,
-} from './scripts/constants.js';
-import initialCards from './scripts/cards.js';
-import selectors from './scripts/selectors.js';
-import FormValidator from './components/FormValidator.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import Section from './components/Section.js';
-import Card from './components/Card.js'
-import UserInfo from './components/UserInfo.js';
+} from '../scripts/constants.js';
+import initialCards from '../scripts/cards.js';
+import selectors from '../scripts/selectors.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js'
+import UserInfo from '../components/UserInfo.js';
 
 //VARS//
 const formsCollection = {};
