@@ -1,4 +1,4 @@
-// import './pages/index.css';
+import './pages/index.css';
 import {
   buttonEditProfile,
   buttonAddNewCard,
@@ -48,6 +48,7 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 ///Form add new card///
 //Creat element//
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
+  console.log("click")
   const newCard = new Card(name, link, '.element-temlate', () => {
     popupWithImage.open(name, link);
   });
