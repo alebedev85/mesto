@@ -7,8 +7,8 @@ export default class UserInfo {
   ///Return odject with user data///
   getUserInfo() {
     const item = {};
-    item['name'] = this._profileName.textContent;
-    item['info'] = this._profileInfo.textContent;
+    item['inputName'] = this._profileName.textContent;
+    item['inputJob'] = this._profileInfo.textContent;
     return item
   }
 

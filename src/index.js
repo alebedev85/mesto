@@ -1,4 +1,4 @@
-// import './pages/index.css';
+import './pages/index.css';
 import {
   buttonEditProfile,
   buttonAddNewCard,
@@ -22,6 +22,11 @@ import UserInfo from './components/UserInfo.js';
 //VARS//
 const formsCollection = {};
 
+const userInfo = new UserInfo({
+  selectorUserName: '.profile__name',
+  selectorUserInfo: '.profile__job'
+});
+
 //Creat Cards From Array//
 const CardsSection = new Section({
   items: initialCards,
@@ -34,10 +39,9 @@ const CardsSection = new Section({
 },
   '.elements')
 
-const userInfo = new UserInfo({
-  selectorUserName: '.profile__name',
-  selectorUserInfo: '.profile__job'
-});
+///Popup With Image///
+//Creat element//
+const popupWithImage = new PopupWithImage('.popup_type_picture')
 
 ///Form edit profile///
 //Creat element//
@@ -56,7 +60,7 @@ const addCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, car
 
 //FUNCTIONS//
 
-//Form Validation//
+//Set form Validation//
 function enableValidation({ formSelector, ...rest }) {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
@@ -64,10 +68,6 @@ function enableValidation({ formSelector, ...rest }) {
     formsCollection[formElement.name].enableValidation();
   });
 };
-
-///Popup With Image///
-//Creat element//
-const popupWithImage = new PopupWithImage('.popup_type_picture')
 
 //Main Funtions//
 
@@ -78,9 +78,8 @@ CardsSection.rendererElements()
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
-  profileNameInput.value = profileName.textContent;
-  profileJobInput.value = profileJob.textContent;
   formsCollection['formEditProfile'].resetInputError();
+  editProfile.setInputValues(userInfo.getUserInfo());
   editProfile.open();
 })
 
