@@ -68,16 +68,20 @@ function enableValidation({ formSelector, ...rest }) {
 //Main Funtions//
 
 //Launch Form Validation//
-enableValidation(selectors)
+enableValidation(selectors);
 
-CardsSection.rendererElements()
+CardsSection.rendererElements();
+
+//Set listeners//
+popupAddCard.setEventListeners();
+popupEditProfile.setEventListeners();
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
   formsCollection['formEditProfile'].resetInputError();
   popupEditProfile.setInputValues(userInfo.getUserInfo());
   popupEditProfile.open();
-})
+});
 
 //Set listener for close edit form//
 buttonClosePopupEditProfile.addEventListener('click', () => popupEditProfile.close());
