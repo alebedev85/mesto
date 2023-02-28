@@ -6,6 +6,11 @@ export default class Card {
     this._imageCard = imageCard;
     this._templatSelector = templatSelector;
     this._handleCardClick = handleCardClick;
+    this._element = this._getTemplate();
+    this._newCardImage = this._element.querySelector('.element__image');
+    this._newcardTitle = this._element.querySelector('.element__title');
+    this._buttonLike = this._element.querySelector('.element__reaction-button');
+    this._buttonTrash = this._element.querySelector('.element__trash-button');
   }
   //Get template, return template//
   _getTemplate() {
@@ -31,23 +36,17 @@ export default class Card {
 
   //Creat card, return complete element//
   creatCard() {
-    this._element = this._getTemplate();
-    const cardImage = this._element.querySelector('.element__image');
-    const cardTitle = this._element.querySelector('.element__title');
-
-    cardImage.addEventListener('click', () => {
+    this._newCardImage.addEventListener('click', () => {
       this._handleCardClick();
     });
 
-    const buttonLike = this._element.querySelector('.element__reaction-button');
-    buttonLike.addEventListener('click', () => this._setLike(buttonLike));
+    this._buttonLike.addEventListener('click', () => this._setLike(this._buttonLike));
 
-    const buttonTrash = this._element.querySelector('.element__trash-button');
-    buttonTrash.addEventListener('click', () => this._deleteCard());
+    this._buttonTrash.addEventListener('click', () => this._deleteCard());
 
-    cardTitle.textContent = this._titleCard;
-    cardImage.src = this._imageCard;
-    cardImage.alt = `Фото ${this._titleCard}`;
+    this._newcardTitle.textContent = this._titleCard;
+    this._newCardImage.src = this._imageCard;
+    this._newCardImage.alt = `Фото ${this._titleCard}`;
     return this._element;
   }
 }
