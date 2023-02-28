@@ -2,9 +2,6 @@ import './index.css';
 import {
   buttonEditProfile,
   buttonAddNewCard,
-  buttonClosePopupEditProfile,
-  buttonClosePopupAddCard,
-  buttonClosePicturePopup,
 } from '../scripts/constants.js';
 import initialCards from '../scripts/cards.js';
 import selectors from '../scripts/selectors.js';
@@ -51,7 +48,7 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 ///Form add new card///
 //Creat element//
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) =>
-  cardsSection.addItem(createCard({ name, link })))
+  cardsSection.addItem({ name, link }))
 
 //FUNCTIONS//
 
@@ -82,17 +79,8 @@ buttonEditProfile.addEventListener('click', () => {
   popupEditProfile.open();
 });
 
-//Set listener for close edit form//
-buttonClosePopupEditProfile.addEventListener('click', () => popupEditProfile.close());
-
 //Set listener for open add new card form//
 buttonAddNewCard.addEventListener('click', () => {
   formsCollection['formAddCard'].resetInputError();
   popupAddCard.open()
 });
-
-//Set listener for close edit form//
-buttonClosePopupAddCard.addEventListener('click', () => popupAddCard.close());
-
-//Set listener for close edit form//
-buttonClosePicturePopup.addEventListener('click', () => popupWithImage.close());
