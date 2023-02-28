@@ -40,6 +40,7 @@ const cardsSection = new Section({
 ///Popup With Image///
 //Creat element//
 const popupWithImage = new PopupWithImage('.popup_type_picture')
+popupWithImage.setEventListeners();
 
 ///Form edit profile///
 //Creat element//
