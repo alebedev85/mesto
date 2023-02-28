@@ -20,13 +20,6 @@ const userInfo = new UserInfo({
   selectorUserInfo: '.profile__job'
 });
 
-function createCard({ name, link }) {
-  const card = new Card(name, link, '.element-temlate', () => {
-    popupWithImage.open(name, link);
-  });
-  return card.creatCard();
-}
-
 //Creat Cards From Array//
 const cardsSection = new Section({
   items: initialCards,
@@ -51,6 +44,14 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
   cardsSection.addItem({ name, link }))
 
 //FUNCTIONS//
+
+//Creat Card//
+function createCard({ name, link }) {
+  const card = new Card(name, link, '.element-temlate', () => {
+    popupWithImage.open(name, link);
+  });
+  return card.creatCard();
+}
 
 //Set form Validation//
 function enableValidation({ formSelector, ...rest }) {
