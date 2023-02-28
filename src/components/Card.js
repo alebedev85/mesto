@@ -34,16 +34,17 @@ export default class Card {
     this._element = null;
   }
 
-  //Creat card, return complete element//
-  creatCard() {
+  _setEventListeners() {
     this._newCardImage.addEventListener('click', () => {
       this._handleCardClick();
     });
-
     this._buttonLike.addEventListener('click', () => this._setLike(this._buttonLike));
-
     this._buttonTrash.addEventListener('click', () => this._deleteCard());
+  }
 
+  //Creat card, return complete element//
+  creatCard() {
+    this._setEventListeners();
     this._newcardTitle.textContent = this._titleCard;
     this._newCardImage.src = this._imageCard;
     this._newCardImage.alt = `Фото ${this._titleCard}`;
