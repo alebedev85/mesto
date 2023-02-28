@@ -23,15 +23,17 @@ const userInfo = new UserInfo({
   selectorUserInfo: '.profile__job'
 });
 
+function createCard({ name, link }) {
+  const card = new Card(name, link, '.element-temlate', () => {
+    popupWithImage.open(name, link);
+  });
+  return card.creatCard();
+}
+
 //Creat Cards From Array//
-const CardsSection = new Section({
+const cardsSection = new Section({
   items: initialCards,
-  renderer: ({ name, link }) => {
-    const card = new Card(name, link, '.element-temlate', () => {
-      popupWithImage.open(name, link);
-    });
-    return card.creatCard();
-  }
+  renderer: createCard
 },
   '.elements')
 
@@ -47,12 +49,8 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 
 ///Form add new card///
 //Creat element//
-const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
-  const newCard = new Card(name, link, '.element-temlate', () => {
-    popupWithImage.open(name, link);
-  });
-  CardsSection.addItem(newCard.creatCard());
-})
+const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) =>
+  cardsSection.addItem(createCard({ name, link })))
 
 //FUNCTIONS//
 
@@ -70,7 +68,7 @@ function enableValidation({ formSelector, ...rest }) {
 //Launch Form Validation//
 enableValidation(selectors);
 
-CardsSection.rendererElements();
+cardsSection.rendererElements();
 
 //Set listeners//
 popupAddCard.setEventListeners();
