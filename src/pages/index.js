@@ -85,3 +85,31 @@ buttonAddNewCard.addEventListener('click', () => {
   formsCollection['formAddCard'].resetInputError();
   popupAddCard.open()
 });
+
+
+function getUserInfo() {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-61/users/me', {
+    headers: {
+      authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268'
+    }
+  })
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+    });
+}
+
+function getCards() {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-61/cards', {
+    headers: {
+      authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268'
+    }
+  })
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+    });
+}
+
+getUserInfo()
+getCards()
