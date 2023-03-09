@@ -8,7 +8,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._isOwner = owner._id === userId;
     this._cardId = _id;
-    this._deleteCard = deleteCard;
+    this._DeleteCardApi = deleteCard;
     this._element = this._getTemplate();
     this._newCardImage = this._element.querySelector('.element__image');
     this._newcardTitle = this._element.querySelector('.element__title');
@@ -33,7 +33,7 @@ export default class Card {
 
   //Delete card//
   _deleteCard() {
-    this._deleteCard(this._id).then(() => {
+    this._DeleteCardApi(this._cardId).then(() => {
       this._element.remove();
       this._element = null;
     })
@@ -46,7 +46,7 @@ export default class Card {
     this._buttonLike.addEventListener('click', () => this._setLike(this._buttonLike));
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
-      this._buttonTrash.addEventListener('click', () => this._deleteCard());
+      this._buttonTrash.addEventListener('click', () => this._deleteCard())
     }
 
   }
