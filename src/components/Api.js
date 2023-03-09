@@ -1,65 +1,55 @@
 class Api {
-  constractor() { }
+  constructor(url, token) {
+    this._url = url;
+    this._token = token;
+  }
+
+  _getHeaders() {
+    return {
+      authorization: this._token,
+      "Content-Type": 'application/json'
+    }
+  }
+
+  _getJson(res) {
+    if (res.ok) {
+      return res.json()
+    } else Promise.reject(`Ошибка: ${res.status}`)
+  }
 
   getUserInfo() {
-    const p = fetch('https://mesto.nomoreparties.co/v1/cohort-61/users/me', {
-      headers: {
-        authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268'
-      }
+    const p = fetch(`${this._url}/users/me`, {
+      headers: this._getHeaders()
     })
-    return p.then(res => {
-      if (res.ok) {
-        return res.json()
-      } else Promise.reject(`Ошибка: ${res.status}`)
-    })
+    return p.then(res => this._getJson(res))
   }
 
   aditUserInfo() {
-    const p = fetch('https://mesto.nomoreparties.co/v1/cohort-61/users/me', {
+    const p = fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268',
-        'Content-Type': 'application/json'
-      },
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: 'Marie Skłodowska Curie',
         about: 'Physicist and Chemist'
       })
     });
-    return p.then(res => {
-      if (res.ok) {
-        return res.json()
-      } else Promise.reject(`Ошибка: ${res.status}`)
-    })
+    return p.then(res => this._getJson(res))
   }
 
   getCards() {
-    const p = fetch('https://mesto.nomoreparties.co/v1/cohort-61/cards', {
-      headers: {
-        authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268'
-      }
+    const p = fetch(`${this._url}/cards`, {
+      headers: this._getHeaders()
     })
-    return p.then(res => {
-      if (res.ok) {
-        return res.json()
-      } else Promise.reject(`Ошибка: ${res.status}`)
-    })
+    return p.then(res => this._getJson(res))
   }
 
   addNewCard(item) {
-    const p = fetch('https://mesto.nomoreparties.co/v1/cohort-61/cards', {
+    const p = fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268',
-        'Content-Type': 'application/json'
-      },
+      headers: this._getHeaders(),
       body: JSON.stringify(item)
     });
-    return p.then(res => {
-      if (res.ok) {
-        return res.json()
-      } else Promise.reject(`Ошибка: ${res.status}`)
-    })
+    return p.then(res => this._getJson(res))
   }
 }
 

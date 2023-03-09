@@ -41,9 +41,8 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 //Creat element//
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
   api.addNewCard({ name, link }).then((item) => {
-    console.log(item)
-    cardsSection.addItem(item)})
-  // cardsSection.addItem({ name, link })
+    cardsSection.addItem(item)
+  })
 })
 
 
@@ -91,5 +90,5 @@ buttonAddNewCard.addEventListener('click', () => {
 });
 
 
-const api = new Api();
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10f-4e80-b715-68fa3cc00268');
 api.getCards().then((items) => cardsSection.rendererElements(items))
