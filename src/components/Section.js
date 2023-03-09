@@ -11,8 +11,8 @@ export default class Section{
   }
 
   ///Add DOM-element in container///
-  addItem(item) {
-    this._cardsContainer.prepend(this._renderer(item));
+  addItem(item, userId) {
+    this._cardsContainer.prepend(this._renderer(item, userId));
   }
 }
 

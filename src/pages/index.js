@@ -45,7 +45,7 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
   api.addNewCard({ name, link })
     .then((item) => {
-      cardsSection.addItem(item)
+      cardsSection.addItem(item,user_id)
     })
     .catch(err => {
       console.log(err)
