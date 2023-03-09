@@ -3,7 +3,6 @@ import {
   buttonEditProfile,
   buttonAddNewCard,
 } from '../scripts/constants.js';
-import initialCards from '../scripts/cards.js';
 import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -11,6 +10,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js'
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js'
 
 //VARS//
 const formsCollection = {};
@@ -22,7 +22,6 @@ const userInfo = new UserInfo({
 
 //Creat Cards From Array//
 const cardsSection = new Section({
-  items: initialCards,
   renderer: createCard
 },
   '.elements')
@@ -40,8 +39,13 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 
 ///Form add new card///
 //Creat element//
-const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) =>
-  cardsSection.addItem({ name, link }))
+const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
+  api.addNewCard({ name, link }).then((item) => {
+    console.log(item)
+    cardsSection.addItem(item)})
+  // cardsSection.addItem({ name, link })
+})
+
 
 //FUNCTIONS//
 
@@ -67,7 +71,7 @@ function enableValidation({ formSelector, ...rest }) {
 //Launch Form Validation//
 enableValidation(selectors);
 
-cardsSection.rendererElements();
+// cardsSection.rendererElements(initialCards);
 
 //Set listeners//
 popupAddCard.setEventListeners();
@@ -87,29 +91,5 @@ buttonAddNewCard.addEventListener('click', () => {
 });
 
 
-function getUserInfo() {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-61/users/me', {
-    headers: {
-      authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-    });
-}
-
-function getCards() {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-61/cards', {
-    headers: {
-      authorization: '3e070c18-b10f-4e80-b715-68fa3cc00268'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-    });
-}
-
-getUserInfo()
-getCards()
+const api = new Api();
+api.getCards().then((items) => cardsSection.rendererElements(items))
