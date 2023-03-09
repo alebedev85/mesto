@@ -13,8 +13,8 @@ export default class UserInfo {
   }
 
   ///Get new user data and add them on page///
-  setUserInfo({ inputName, inputJob}) {
-    this._profileName.textContent = inputName;
-    this._profileInfo.textContent = inputJob;
+  setUserInfo({ name, about}) {
+    this._profileName.textContent = name;
+    this._profileInfo.textContent = about;
   }
 }

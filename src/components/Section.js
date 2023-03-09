@@ -6,8 +6,8 @@ export default class Section{
   }
 
   ///Render all elemants///
-  rendererElements(items) {
-    items.forEach((item) => this._cardsContainer.append(this._renderer(item)))
+  rendererElements(items, userId) {
+    items.forEach((item) => this._cardsContainer.append(this._renderer(item, userId)))
   }
 
   ///Add DOM-element in container///

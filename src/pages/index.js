@@ -13,6 +13,9 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js'
 
 //VARS//
+
+let user_id;
+
 const formsCollection = {};
 
 const userInfo = new UserInfo({
@@ -40,19 +43,23 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
 ///Form add new card///
 //Creat element//
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
-  api.addNewCard({ name, link }).then((item) => {
-    cardsSection.addItem(item)
-  })
+  api.addNewCard({ name, link })
+    .then((item) => {
+      cardsSection.addItem(item)
+    })
+    .catch(err => {
+      console.log(err)
+    })
 })
 
 
 //FUNCTIONS//
 
 //Creat Card//
-function createCard({ name, link }) {
+function createCard({ name, link, owner }, user_id) {
   const card = new Card(name, link, '.element-temlate', () => {
     popupWithImage.open(name, link);
-  });
+  }, owner, user_id);
   return card.creatCard();
 }
 
@@ -91,4 +98,16 @@ buttonAddNewCard.addEventListener('click', () => {
 
 
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10f-4e80-b715-68fa3cc00268');
-api.getCards().then((items) => cardsSection.rendererElements(items))
+
+Promise.all([api.getCards(), api.getCurrentUser()])
+  .then(([items, user]) => {
+    console.log(items)
+    console.log(user)
+    user_id = user._id;
+    console.log(user_id)
+    cardsSection.rendererElements(items, user_id);
+    userInfo.setUserInfo(user);
+  })
+  .catch(err => {
+    console.log(err)
+  })

@@ -17,6 +17,13 @@ class Api {
     } else Promise.reject(`Ошибка: ${res.status}`)
   }
 
+  getCurrentUser() {
+    const p = fetch(`${this._url}/users/me`, {
+      headers: this._getHeaders()
+    })
+    return p.then(res => this._getJson(res))
+  }
+
   getUserInfo() {
     const p = fetch(`${this._url}/users/me`, {
       headers: this._getHeaders()

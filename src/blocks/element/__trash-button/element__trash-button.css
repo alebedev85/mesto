@@ -14,6 +14,7 @@
     background-image: url(../../../images/Trash.svg);
     background-repeat: no-repeat;
     background-position: center center;
+    visibility: hidden;
   }
 
   .element__trash-button:hover {

@@ -1,11 +1,12 @@
 
 //Return document object of card///
 export default class Card {
-  constructor(titleCard, imageCard, templatSelector, handleCardClick) {
+  constructor(titleCard, imageCard, templatSelector, handleCardClick, owner, userId) {
     this._titleCard = titleCard;
     this._imageCard = imageCard;
     this._templatSelector = templatSelector;
     this._handleCardClick = handleCardClick;
+    this._isOwner = owner._id === userId;
     this._element = this._getTemplate();
     this._newCardImage = this._element.querySelector('.element__image');
     this._newcardTitle = this._element.querySelector('.element__title');
@@ -39,7 +40,11 @@ export default class Card {
       this._handleCardClick();
     });
     this._buttonLike.addEventListener('click', () => this._setLike(this._buttonLike));
-    this._buttonTrash.addEventListener('click', () => this._deleteCard());
+    if (this._isOwner) {
+      this._buttonTrash.style.visibility = "visible";
+      this._buttonTrash.addEventListener('click', () => this._deleteCard());
+    }
+
   }
 
   //Creat card, return complete element//
