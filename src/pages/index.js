@@ -56,11 +56,16 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
 //FUNCTIONS//
 
 //Creat Card//
-function createCard({ name, link, owner }, user_id) {
-  const card = new Card(name, link, '.element-temlate', () => {
-    popupWithImage.open(name, link);
-  }, owner, user_id);
+function createCard(item, user_id) {
+  const card = new Card(item, '.element-temlate', () => {
+    popupWithImage.open(item);
+  }, user_id, deleteCard);
   return card.creatCard();
+}
+
+//Delete Card//
+function deleteCard(id){
+  return api.deleteCard(id)
 }
 
 //Set form Validation//
@@ -76,8 +81,6 @@ function enableValidation({ formSelector, ...rest }) {
 
 //Launch Form Validation//
 enableValidation(selectors);
-
-// cardsSection.rendererElements(initialCards);
 
 //Set listeners//
 popupAddCard.setEventListeners();

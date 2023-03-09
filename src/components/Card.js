@@ -1,12 +1,14 @@
 
 //Return document object of card///
 export default class Card {
-  constructor(titleCard, imageCard, templatSelector, handleCardClick, owner, userId) {
-    this._titleCard = titleCard;
-    this._imageCard = imageCard;
+  constructor({name, link, owner, _id}, templatSelector, handleCardClick, userId, deleteCard) {
+    this._titleCard = name;
+    this._imageCard = link;
     this._templatSelector = templatSelector;
     this._handleCardClick = handleCardClick;
     this._isOwner = owner._id === userId;
+    this._cardId = _id;
+    this._deleteCard = deleteCard;
     this._element = this._getTemplate();
     this._newCardImage = this._element.querySelector('.element__image');
     this._newcardTitle = this._element.querySelector('.element__title');
@@ -31,6 +33,7 @@ export default class Card {
 
   //Delete card//
   _deleteCard() {
+    this._deleteCard(userId)
     this._element.remove();
     this._element = null;
   }

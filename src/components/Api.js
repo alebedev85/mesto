@@ -58,6 +58,15 @@ class Api {
     });
     return p.then(res => this._getJson(res))
   }
+
+  deleteCard(id) {
+    const p = fetch(`${this._url}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._getHeaders(),
+      body: JSON.stringify(item)
+    });
+    return p.then(res => this._getJson(res))
+  }
 }
 
 export default Api
