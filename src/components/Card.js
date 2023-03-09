@@ -1,7 +1,7 @@
 
 //Return document object of card///
 export default class Card {
-  constructor({name, link, owner, _id}, templatSelector, handleCardClick, userId, deleteCard) {
+  constructor({ name, link, owner, _id }, templatSelector, handleCardClick, userId, deleteCard) {
     this._titleCard = name;
     this._imageCard = link;
     this._templatSelector = templatSelector;
@@ -33,9 +33,10 @@ export default class Card {
 
   //Delete card//
   _deleteCard() {
-    this._deleteCard(userId)
-    this._element.remove();
-    this._element = null;
+    this._deleteCard(this._id).then(() => {
+      this._element.remove();
+      this._element = null;
+    })
   }
 
   _setEventListeners() {

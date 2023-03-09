@@ -62,8 +62,7 @@ class Api {
   deleteCard(id) {
     const p = fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._getHeaders(),
-      body: JSON.stringify(item)
+      headers: this._getHeaders()
     });
     return p.then(res => this._getJson(res))
   }
