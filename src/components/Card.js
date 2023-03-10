@@ -58,10 +58,8 @@ export default class Card {
     this._cardTitle.textContent = this._titleCard;
     this._CardImage.src = this._imageCard;
     this._CardImage.alt = `Фото ${this._titleCard}`;
-    if (this._likes.length > 0) {
-      this._buttonLike.classList.add('element__reaction-button_activ')
-      this._likeCounter.textContent = this._likes.length
-    }
+    this._likeCounter.textContent = this._likes.length
+
     return this._element;
   }
 }
