@@ -36,8 +36,11 @@ popupWithImage.setEventListeners();
 
 ///Form edit profile///
 //Creat element//
-const popupEditProfile = new PopupWithForm('.popup_type_edit', (data) => {
-  userInfo.setUserInfo(data);
+const popupEditProfile = new PopupWithForm('.popup_type_edit', ({inputName: name, inputJob: about}) => {
+  api.setUserInfo(name, about)
+  .then(res => {
+    userInfo.setUserInfo(res)
+  })
 })
 
 ///Form add new card///

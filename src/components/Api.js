@@ -31,13 +31,13 @@ class Api {
     return p.then(res => this._getJson(res))
   }
 
-  aditUserInfo() {
+  setUserInfo(name, about) {
     const p = fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._getHeaders(),
       body: JSON.stringify({
-        name: 'Marie Skłodowska Curie',
-        about: 'Physicist and Chemist'
+        name: name,
+        about: about
       })
     });
     return p.then(res => this._getJson(res))
