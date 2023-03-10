@@ -1,18 +1,20 @@
 
 //Return document object of card///
 export default class Card {
-  constructor({ name, link, owner, _id }, templatSelector, handleCardClick, userId, deleteCard) {
+  constructor({ name, link, owner, _id, likes }, templatSelector, handleCardClick, userId, deleteCard) {
     this._titleCard = name;
     this._imageCard = link;
     this._templatSelector = templatSelector;
     this._handleCardClick = handleCardClick;
     this._isOwner = owner._id === userId;
     this._cardId = _id;
+    this._likes = likes;
     this._DeleteCardApi = deleteCard;
     this._element = this._getTemplate();
-    this._newCardImage = this._element.querySelector('.element__image');
-    this._newcardTitle = this._element.querySelector('.element__title');
+    this._CardImage = this._element.querySelector('.element__image');
+    this._cardTitle = this._element.querySelector('.element__title');
     this._buttonLike = this._element.querySelector('.element__reaction-button');
+    this._likeCounter = this._element.querySelector('.element__like-counter');
     this._buttonTrash = this._element.querySelector('.element__trash-button');
   }
   //Get template, return template//
@@ -40,7 +42,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._newCardImage.addEventListener('click', () => {
+    this._CardImage.addEventListener('click', () => {
       this._handleCardClick();
     });
     this._buttonLike.addEventListener('click', () => this._setLike(this._buttonLike));
@@ -48,15 +50,18 @@ export default class Card {
       this._buttonTrash.style.visibility = "visible";
       this._buttonTrash.addEventListener('click', () => this._deleteCard())
     }
-
   }
 
   //Creat card, return complete element//
   creatCard() {
     this._setEventListeners();
-    this._newcardTitle.textContent = this._titleCard;
-    this._newCardImage.src = this._imageCard;
-    this._newCardImage.alt = `Фото ${this._titleCard}`;
+    this._cardTitle.textContent = this._titleCard;
+    this._CardImage.src = this._imageCard;
+    this._CardImage.alt = `Фото ${this._titleCard}`;
+    if (this._likes.length > 0) {
+      this._buttonLike.classList.add('element__reaction-button_activ')
+      this._likeCounter.textContent = this._likes.length
+    }
     return this._element;
   }
 }

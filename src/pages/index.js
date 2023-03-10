@@ -36,11 +36,11 @@ popupWithImage.setEventListeners();
 
 ///Form edit profile///
 //Creat element//
-const popupEditProfile = new PopupWithForm('.popup_type_edit', ({inputName: name, inputJob: about}) => {
+const popupEditProfile = new PopupWithForm('.popup_type_edit', ({ inputName: name, inputJob: about }) => {
   api.setUserInfo(name, about)
-  .then(res => {
-    userInfo.setUserInfo(res)
-  })
+    .then(res => {
+      userInfo.setUserInfo(res)
+    })
 })
 
 ///Form add new card///
@@ -48,14 +48,13 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', ({inputName: name
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
   api.addNewCard({ name, link })
     .then((item) => {
-      cardsSection.addItem(item,user_id)
+      cardsSection.addItem(item, user_id)
     })
     .catch(err => {
       alert(err)
       console.log(err)
     })
 })
-
 
 //FUNCTIONS//
 
@@ -68,7 +67,7 @@ function createCard(item, user_id) {
 }
 
 //Delete Card//
-function deleteCard(id){
+function deleteCard(id) {
   return api.deleteCard(id)
 }
 
@@ -108,6 +107,7 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10
 
 Promise.all([api.getCards(), api.getCurrentUser()])
   .then(([items, user]) => {
+    console.log(items)
     user_id = user._id;
     cardsSection.rendererElements(items, user_id);
     userInfo.setUserInfo(user);
