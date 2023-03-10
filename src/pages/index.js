@@ -51,6 +51,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
       cardsSection.addItem(item,user_id)
     })
     .catch(err => {
+      alert(err)
       console.log(err)
     })
 })
@@ -107,13 +108,11 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10
 
 Promise.all([api.getCards(), api.getCurrentUser()])
   .then(([items, user]) => {
-    console.log(items)
-    console.log(user)
     user_id = user._id;
-    console.log(user_id)
     cardsSection.rendererElements(items, user_id);
     userInfo.setUserInfo(user);
   })
   .catch(err => {
-    console.log(err)
+    alert(err);
+    console.log(err);
   })
