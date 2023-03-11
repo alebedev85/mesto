@@ -7,6 +7,7 @@ import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js'
 import UserInfo from '../components/UserInfo.js';
@@ -56,13 +57,17 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
     })
 })
 
+///Form delete card///
+//Creat element//
+const popupDeleteCard = new PopupConfirm('.popup_type_delete', deleteCard)
+
 //FUNCTIONS//
 
 //Creat Card//
 function createCard(item, user_id) {
   const card = new Card(item, '.element-temlate', () => {
     popupWithImage.open(item);
-  }, user_id, deleteCard);
+  }, user_id, (element, id) => popupDeleteCard.open(element, id));
   return card.creatCard();
 }
 
@@ -88,6 +93,7 @@ enableValidation(selectors);
 //Set listeners//
 popupAddCard.setEventListeners();
 popupEditProfile.setEventListeners();
+popupDeleteCard.setEventListeners();
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
