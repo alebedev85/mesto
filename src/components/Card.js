@@ -1,15 +1,17 @@
 
 //Return document object of card///
 export default class Card {
-  constructor({ name, link, owner, _id, likes }, templatSelector, handleCardClick, userId, openDeletePopup) {
+  constructor({ name, link, owner, _id, likes }, templatSelector, handleCardClick, userId, openDeletePopup, handelLikeClick) {
     this._titleCard = name;
     this._imageCard = link;
     this._templatSelector = templatSelector;
     this._handleCardClick = handleCardClick;
+    this.userId = userId
     this._isOwner = owner._id === userId;
     this._cardId = _id;
     this._likes = likes;
     this._openDeletePopup = openDeletePopup;
+    this._handelLikeClick = handelLikeClick
     this._element = this._getTemplate();
     this._CardImage = this._element.querySelector('.element__image');
     this._cardTitle = this._element.querySelector('.element__title');
@@ -29,8 +31,21 @@ export default class Card {
   }
 
   //Set like//
-  _setLike(element) {
-    element.classList.toggle('element__reaction-button_activ');
+  _setLike(res) {
+    console.log(res.likes);
+    console.log(res.likes.length);
+    this._likeCounter.textContent = res.likes.length
+    this._buttonLike.classList.toggle('element__reaction-button_activ');
+  }
+
+  _requestLike() {
+    console.log(this.userId);
+    console.log(this._likes.some(elm => elm._id === this.userId));
+    if (this._likes.some(elm => elm._id === this.userId)) {
+      this._handelLikeClick.deleteLike(this._cardId).then(res => this._setLike(res))
+    } else {
+      this._handelLikeClick.putLike(this._cardId).then(res => this._setLike(res))
+    }
   }
 
   // //Delete card//
@@ -43,7 +58,7 @@ export default class Card {
 
   _setEventListeners() {
     this._CardImage.addEventListener('click', () => this._handleCardClick());
-    this._buttonLike.addEventListener('click', () => this._setLike(this._buttonLike));
+    this._buttonLike.addEventListener('click', () => this._requestLike());
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
       this._buttonTrash.addEventListener('click', () => this._openDeletePopup(this._element, this._cardId))

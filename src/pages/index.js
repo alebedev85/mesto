@@ -7,7 +7,7 @@ import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import PopupConfirm from '../components/PopupConfirm.js';
+import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js'
 import UserInfo from '../components/UserInfo.js';
@@ -59,7 +59,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
 
 ///Form delete card///
 //Creat element//
-const popupDeleteCard = new PopupConfirm('.popup_type_delete', deleteCard)
+const popupDeleteCard = new PopupDeleteCard('.popup_type_delete', deleteCard)
 
 //FUNCTIONS//
 
@@ -67,7 +67,10 @@ const popupDeleteCard = new PopupConfirm('.popup_type_delete', deleteCard)
 function createCard(item, user_id) {
   const card = new Card(item, '.element-temlate', () => {
     popupWithImage.open(item);
-  }, user_id, (element, id) => popupDeleteCard.open(element, id));
+  },
+    user_id,
+    (element, id) => popupDeleteCard.open(element, id),
+    handelLikeClick);
   return card.creatCard();
 }
 
@@ -122,3 +125,8 @@ Promise.all([api.getCards(), api.getCurrentUser()])
     alert(err);
     console.log(err);
   })
+
+const handelLikeClick = {
+  putLike: (ip) => api.putLike(ip),
+  deleteLike: (ip) => api.deleteLike(ip)
+}

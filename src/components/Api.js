@@ -66,6 +66,22 @@ class Api {
     });
     return p.then(res => this._getJson(res))
   }
+
+  putLike(id) {
+    const p = fetch(`${this._url}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._getHeaders()
+    });
+    return p.then(res => this._getJson(res))
+  }
+
+  deleteLike(id) {
+    const p = fetch(`${this._url}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._getHeaders()
+    });
+    return p.then(res => this._getJson(res))
+  }
 }
 
 export default Api
