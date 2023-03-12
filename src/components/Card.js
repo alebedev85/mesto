@@ -10,6 +10,7 @@ export default class Card {
     this._isOwner = owner._id === userId;
     this._cardId = _id;
     this._likes = likes;
+    this._hasMyLike = this._likes.some(elm => elm._id === this.userId)
     this._openDeletePopup = openDeletePopup;
     this._handelLikeClick = handelLikeClick
     this._element = this._getTemplate();
@@ -31,34 +32,35 @@ export default class Card {
   }
 
   //Set like//
-  _setLike(res) {
-    console.log(res.likes);
-    console.log(res.likes.length);
+  _setLikeHtml(res) {
+    this._hasMyLike = res.likes.some(elm => elm._id === this.userId)
     this._likeCounter.textContent = res.likes.length
     this._buttonLike.classList.toggle('element__reaction-button_activ');
   }
 
-  _requestLike() {
-    console.log(this.userId);
-    console.log(this._likes.some(elm => elm._id === this.userId));
-    if (this._likes.some(elm => elm._id === this.userId)) {
-      this._handelLikeClick.deleteLike(this._cardId).then(res => this._setLike(res))
+  _setLike() {
+    if (this._hasMyLike) {
+      console.log('TRUE => DEL');
+      this._handelLikeClick.deleteLike(this._cardId)
+      .then(res => this._setLikeHtml(res))
+      .catch(err => {
+        alert(err);
+        console.log(err);
+      })
     } else {
-      this._handelLikeClick.putLike(this._cardId).then(res => this._setLike(res))
+      console.log('FALSE => PUT');
+      this._handelLikeClick.putLike(this._cardId)
+      .then(res => this._setLikeHtml(res))
+      .catch(err => {
+        alert(err);
+        console.log(err);
+      })
     }
   }
 
-  // //Delete card//
-  // _deleteCard() {
-  //   this._DeleteCardApi(this._cardId).then(() => {
-  //     this._element.remove();
-  //     this._element = null;
-  //   })
-  // }
-
   _setEventListeners() {
     this._CardImage.addEventListener('click', () => this._handleCardClick());
-    this._buttonLike.addEventListener('click', () => this._requestLike());
+    this._buttonLike.addEventListener('click', () => this._setLike());
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
       this._buttonTrash.addEventListener('click', () => this._openDeletePopup(this._element, this._cardId))
@@ -71,6 +73,7 @@ export default class Card {
     this._cardTitle.textContent = this._titleCard;
     this._CardImage.src = this._imageCard;
     this._CardImage.alt = `Фото ${this._titleCard}`;
+    if (this._hasMyLike) this._buttonLike.classList.add('element__reaction-button_activ');
     this._likeCounter.textContent = this._likes.length
 
     return this._element;
