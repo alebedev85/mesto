@@ -40,7 +40,6 @@ export default class Card {
 
   _setLike() {
     if (this._hasMyLike) {
-      console.log('TRUE => DEL');
       this._handelLikeClick.deleteLike(this._cardId)
       .then(res => this._setLikeHtml(res))
       .catch(err => {
@@ -48,7 +47,6 @@ export default class Card {
         console.log(err);
       })
     } else {
-      console.log('FALSE => PUT');
       this._handelLikeClick.putLike(this._cardId)
       .then(res => this._setLikeHtml(res))
       .catch(err => {
