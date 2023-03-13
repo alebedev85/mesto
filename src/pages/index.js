@@ -3,7 +3,9 @@ import {
   buttonEditProfile,
   buttonAddNewCard,
   buttonEditAvatar,
-  avatarImage
+  avatarImage,
+  addNewCardButton,
+  editProfiledButton
 } from '../scripts/constants.js';
 import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
@@ -59,15 +61,25 @@ popupWithImage.setEventListeners();
 ///Form edit profile///
 //Creat element//
 const popupEditProfile = new PopupWithForm('.popup_type_edit', ({ inputName: name, inputJob: about }) => {
+  editProfiledButton.textContent = 'Сохранение...'
   api.setUserInfo(name, about)
     .then(res => {
       userInfo.setUserInfo(res)
     })
+    .catch(err => {
+      alert(err)
+      console.log(err)
+    })
+    .finally(() => {
+      editProfiledButton.textContent = 'Сохранить';
+    })
+
 })
 
 ///Form add new card///
 //Creat element//
 const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
+  addNewCardButton.textContent = 'Сохранение...';
   api.addNewCard({ name, link })
     .then((item) => {
       cardsSection.addItem(item, user_id)
@@ -76,6 +88,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
       alert(err)
       console.log(err)
     })
+    .finally(() => addNewCardButton.textContent = 'Создать')
 })
 
 ///Form delete card///
