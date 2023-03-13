@@ -2,6 +2,8 @@ import './index.css';
 import {
   buttonEditProfile,
   buttonAddNewCard,
+  buttonEditAvatar,
+  avatarImage
 } from '../scripts/constants.js';
 import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
@@ -59,7 +61,11 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
 
 ///Form delete card///
 //Creat element//
-const popupDeleteCard = new PopupDeleteCard('.popup_type_delete', deleteCard)
+const popupDeleteCard = new PopupDeleteCard('.popup_type_delete', deleteCard);
+
+///Form edit avatar///
+//Creat element//
+const popupEditAvatar = new PopupDeleteCard('.popup_type_adit-avatar', () => {});
 
 //FUNCTIONS//
 
@@ -97,6 +103,7 @@ enableValidation(selectors);
 popupAddCard.setEventListeners();
 popupEditProfile.setEventListeners();
 popupDeleteCard.setEventListeners();
+popupEditAvatar.setEventListeners();
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
@@ -108,15 +115,20 @@ buttonEditProfile.addEventListener('click', () => {
 //Set listener for open add new card form//
 buttonAddNewCard.addEventListener('click', () => {
   formsCollection['formAddCard'].resetInputError();
-  popupAddCard.open()
+  popupAddCard.open();
 });
 
+//Set listener for open edit form//
+buttonEditAvatar.addEventListener('click', () => {
+  formsCollection['formEditAvatar'].resetInputError();
+  popupEditAvatar.open();
+})
 
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10f-4e80-b715-68fa3cc00268');
 
 Promise.all([api.getCards(), api.getCurrentUser()])
   .then(([items, user]) => {
-    console.log(items)
+    avatarImage.src = user.avatar;
     user_id = user._id;
     cardsSection.rendererElements(items, user_id);
     userInfo.setUserInfo(user);
