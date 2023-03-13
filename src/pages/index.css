@@ -15,7 +15,7 @@
 @import url(../blocks/profile/__card/profile__card.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__avatar-blackout/profile__avatar-blackout.css);
-@import url(../blocks/profile/__new-avatar-button/profile__new-avatar-button.css);
+@import url(../blocks/profile/__edit-avatar-button/profile__edit-avatar-button.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__job/profile__job.css);
