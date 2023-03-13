@@ -82,6 +82,15 @@ class Api {
     });
     return p.then(res => this._getJson(res))
   }
+
+  setNewAvatar(input) {
+    const p = fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._getHeaders(),
+      body: JSON.stringify(input)
+    });
+    return p.then(res => this._getJson(res))
+  }
 }
 
 export default Api

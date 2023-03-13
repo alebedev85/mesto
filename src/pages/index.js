@@ -19,6 +19,25 @@ import Api from '../components/Api.js'
 
 let user_id;
 
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10f-4e80-b715-68fa3cc00268');
+
+Promise.all([api.getCards(), api.getCurrentUser()])
+  .then(([items, user]) => {
+    avatarImage.src = user.avatar;
+    user_id = user._id;
+    cardsSection.rendererElements(items, user_id);
+    userInfo.setUserInfo(user);
+  })
+  .catch(err => {
+    alert(err);
+    console.log(err);
+  })
+
+const handelLikeClick = {
+  putLike: (ip) => api.putLike(ip),
+  deleteLike: (ip) => api.deleteLike(ip)
+}
+
 const formsCollection = {};
 
 const userInfo = new UserInfo({
@@ -65,7 +84,7 @@ const popupDeleteCard = new PopupDeleteCard('.popup_type_delete', deleteCard);
 
 ///Form edit avatar///
 //Creat element//
-const popupEditAvatar = new PopupDeleteCard('.popup_type_adit-avatar', () => {});
+const popupEditAvatar = new PopupWithForm('.popup_type_adit-avatar', setNewAvatar);
 
 //FUNCTIONS//
 
@@ -83,6 +102,18 @@ function createCard(item, user_id) {
 //Delete Card//
 function deleteCard(id) {
   return api.deleteCard(id)
+}
+
+//Set new avatar//
+function setNewAvatar(input) {
+  api.setNewAvatar(input)
+    .then((res) => {
+      avatarImage.src = res.avatar
+    })
+    .catch(err => {
+      alert(err)
+      console.log(err)
+    })
 }
 
 //Set form Validation//
@@ -123,22 +154,3 @@ buttonEditAvatar.addEventListener('click', () => {
   formsCollection['formEditAvatar'].resetInputError();
   popupEditAvatar.open();
 })
-
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10f-4e80-b715-68fa3cc00268');
-
-Promise.all([api.getCards(), api.getCurrentUser()])
-  .then(([items, user]) => {
-    avatarImage.src = user.avatar;
-    user_id = user._id;
-    cardsSection.rendererElements(items, user_id);
-    userInfo.setUserInfo(user);
-  })
-  .catch(err => {
-    alert(err);
-    console.log(err);
-  })
-
-const handelLikeClick = {
-  putLike: (ip) => api.putLike(ip),
-  deleteLike: (ip) => api.deleteLike(ip)
-}
