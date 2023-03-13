@@ -62,4 +62,4 @@
 @import url(../blocks/popup/__container/_type_delete/popup__container_type_delete.css);
 @import url(../blocks/popup/__form/_type_delete/popup__form_type_delete.css);
 /*Delete form*/
-@import url(../blocks/popup/__container/_type_adit-avatar/popup__container_type_adit-avatar.css);
+@import url(../blocks/popup/__container/_type_edit-avatar/popup__container_type_edit-avatar.css);
