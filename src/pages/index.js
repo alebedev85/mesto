@@ -13,7 +13,7 @@ import selectors from '../scripts/selectors.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import PopupDeleteCard from '../components/PopupDeleteCard.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js'
 import UserInfo from '../components/UserInfo.js';
@@ -70,7 +70,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
 
 ///Form delete card///
 //Creat element//
-const popupDeleteCard = new PopupDeleteCard('.popup_type_delete', deleteCard);
+const popupDeleteCard = new PopupWithConfirmation('.popup_type_delete', deleteCard);
 
 ///Form edit avatar///
 //Creat element//
