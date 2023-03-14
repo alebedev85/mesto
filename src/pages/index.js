@@ -62,35 +62,11 @@ popupWithImage.setEventListeners();
 
 ///Form edit profile///
 //Creat element//
-const popupEditProfile = new PopupWithForm('.popup_type_edit', ({ inputName: name, inputJob: about }) => {
-  buttonSaveProfile.textContent = 'Сохранение...'
-  api.setUserInfo(name, about)
-    .then(res => {
-      userInfo.setUserInfo(res)
-    })
-    .catch(err => {
-      alert(err)
-      console.log(err)
-    })
-    .finally(() => {
-      buttonSaveProfile.textContent = 'Сохранить';
-    })
-})
+const popupEditProfile = new PopupWithForm('.popup_type_edit', ({ inputName: name, inputJob: about }) => EditUserInfo(name, about))
 
 ///Form add new card///
 //Creat element//
-const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => {
-  buttonSaveNewCard.textContent = 'Сохранение...';
-  api.addNewCard({ name, link })
-    .then((item) => {
-      cardsSection.addItem(item, user_id)
-    })
-    .catch(err => {
-      alert(err)
-      console.log(err)
-    })
-    .finally(() => buttonSaveNewCard.textContent = 'Создать')
-})
+const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link, cardNameImput: name }) => addNewCard(name, link))
 
 ///Form delete card///
 //Creat element//
@@ -98,7 +74,8 @@ const popupDeleteCard = new PopupDeleteCard('.popup_type_delete', deleteCard);
 
 ///Form edit avatar///
 //Creat element//
-const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', setNewAvatar);
+const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', setNewAvatar)
+
 
 //FUNCTIONS//
 
@@ -113,13 +90,50 @@ function createCard(item, user_id) {
   return card.creatCard();
 }
 
+//Add new card//
+function addNewCard(name, link) {
+  buttonSaveNewCard.textContent = 'Сохранение...'
+  api.addNewCard({ name, link })
+    .then((item) => {
+      cardsSection.addItem(item, user_id)
+    })
+    .catch(err => {
+      alert(err)
+      console.log(err)
+    })
+    .finally(() => buttonSaveNewCard.textContent = 'Создать')
+}
+
 //Delete Card//
 function deleteCard(id) {
+  buttonDeleteCard.textContent = 'Сохранение...';
   return api.deleteCard(id)
+    .catch(err => {
+      alert(err)
+      console.log(err)
+    })
+    .finally(() => buttonDeleteCard.textContent = 'Да')
+}
+
+//Edit user info//
+function EditUserInfo(name, about) {
+  buttonSaveProfile.textContent = 'Сохранение...'
+  api.setUserInfo(name, about)
+    .then(res => {
+      userInfo.setUserInfo(res)
+    })
+    .catch(err => {
+      alert(err)
+      console.log(err)
+    })
+    .finally(() => {
+      buttonSaveProfile.textContent = 'Сохранить';
+    })
 }
 
 //Set new avatar//
 function setNewAvatar(input) {
+  buttonSaveAvatar.textContent = 'Сохранение...';
   api.setNewAvatar(input)
     .then((res) => {
       imageAvatar.src = res.avatar
@@ -128,6 +142,7 @@ function setNewAvatar(input) {
       alert(err)
       console.log(err)
     })
+    .finally(() => buttonSaveAvatar.textContent = 'Создать')
 }
 
 //Set form Validation//
