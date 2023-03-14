@@ -24,13 +24,6 @@ class Api {
     return p.then(res => this._getJson(res))
   }
 
-  getUserInfo() {
-    const p = fetch(`${this._url}/users/me`, {
-      headers: this._getHeaders()
-    })
-    return p.then(res => this._getJson(res))
-  }
-
   setUserInfo(name, about) {
     const p = fetch(`${this._url}/users/me`, {
       method: 'PATCH',
@@ -67,7 +60,7 @@ class Api {
     return p.then(res => this._getJson(res))
   }
 
-  putLike(id) {
+  addLike(id) {
     const p = fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._getHeaders()

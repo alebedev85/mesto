@@ -1,20 +1,20 @@
 
 //Return document object of card///
 export default class Card {
-  constructor({ name, link, owner, _id, likes }, templatSelector, handleCardClick, userId, openDeletePopup, handelLikeClick) {
+  constructor({ name, link, owner, _id, likes }, templateSelector, handleCardClick, userId, openDeletePopup, handelLikeClick) {
     this._titleCard = name;
     this._imageCard = link;
-    this._templatSelector = templatSelector;
+    this._templatSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this.userId = userId
     this._isOwner = owner._id === userId;
     this._cardId = _id;
     this._likes = likes;
     this._hasMyLike = this._likes.some(elm => elm._id === this.userId)
-    this._openDeletePopup = openDeletePopup;
+    this._handleDeleteCard = openDeletePopup;
     this._handelLikeClick = handelLikeClick
     this._element = this._getTemplate();
-    this._CardImage = this._element.querySelector('.element__image');
+    this._cardImage = this._element.querySelector('.element__image');
     this._cardTitle = this._element.querySelector('.element__title');
     this._buttonLike = this._element.querySelector('.element__reaction-button');
     this._likeCounter = this._element.querySelector('.element__like-counter');
@@ -31,46 +31,36 @@ export default class Card {
     return card;
   }
 
-  //Set like//
-  _setLikeHtml(res) {
-    this._hasMyLike = res.likes.some(elm => elm._id === this.userId)
-    this._likeCounter.textContent = res.likes.length
+  //Update like//
+  updateLikes(likes) {
+    this._hasMyLike = likes.some(elm => elm._id === this.userId)
+    this._likeCounter.textContent = likes.length
     this._buttonLike.classList.toggle('element__reaction-button_activ');
   }
 
-  _setLike() {
+  _handleLikeClick() {
     if (this._hasMyLike) {
-      this._handelLikeClick.deleteLike(this._cardId)
-      .then(res => this._setLikeHtml(res))
-      .catch(err => {
-        alert(err);
-        console.log(err);
-      })
+      this._handelLikeClick.deleteLike(this._cardId, this);
     } else {
-      this._handelLikeClick.putLike(this._cardId)
-      .then(res => this._setLikeHtml(res))
-      .catch(err => {
-        alert(err);
-        console.log(err);
-      })
+      this._handelLikeClick.addLike(this._cardId, this);
     }
   }
 
   _setEventListeners() {
-    this._CardImage.addEventListener('click', () => this._handleCardClick());
-    this._buttonLike.addEventListener('click', () => this._setLike());
+    this._cardImage.addEventListener('click', () => this._handleCardClick());
+    this._buttonLike.addEventListener('click', () => this._handleLikeClick());
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
-      this._buttonTrash.addEventListener('click', () => this._openDeletePopup(this._element, this._cardId))
+      this._buttonTrash.addEventListener('click', () => this._handleDeleteCard(this._element, this._cardId))
     }
   }
 
   //Creat card, return complete element//
-  creatCard() {
+  createCard() {
     this._setEventListeners();
     this._cardTitle.textContent = this._titleCard;
-    this._CardImage.src = this._imageCard;
-    this._CardImage.alt = `Фото ${this._titleCard}`;
+    this._cardImage.src = this._imageCard;
+    this._cardImage.alt = `Фото ${this._titleCard}`;
     if (this._hasMyLike) this._buttonLike.classList.add('element__reaction-button_activ');
     this._likeCounter.textContent = this._likes.length
 

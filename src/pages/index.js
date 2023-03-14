@@ -28,7 +28,7 @@ Promise.all([api.getCards(), api.getCurrentUser()])
   .then(([items, user]) => {
     userInfo.setAvatar(user.avatar);
     user_id = user._id;
-    cardsSection.rendererElements(items, user_id);
+    cardsSection.renderItems(items, user_id);
     userInfo.setUserInfo(user);
   })
   .catch(err => {
@@ -37,8 +37,25 @@ Promise.all([api.getCards(), api.getCurrentUser()])
   })
 
 const handelLikeClick = {
-  putLike: (ip) => api.putLike(ip),
-  deleteLike: (ip) => api.deleteLike(ip)
+  addLike: (ip, element) => addLike(ip, element),
+  deleteLike: (ip, element) => deleteLike(ip, element)
+}
+
+function addLike(ip, element) {
+  api.addLike(ip)
+    .then(res => element.updateLikes(res.likes))
+    .catch(err => {
+      alert(err);
+      console.log(err);
+    })
+}
+function deleteLike(ip, element) {
+  api.deleteLike(ip)
+    .then(res => element.updateLikes(res.likes))
+    .catch(err => {
+      alert(err);
+      console.log(err);
+    })
 }
 
 const formValidators = {};
@@ -80,14 +97,14 @@ const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', setNewAvata
 //FUNCTIONS//
 
 //Creat Card//
-function createCard(item, user_id) {
+function createCard(item) {
   const card = new Card(item, '.element-temlate', () => {
     popupWithImage.open(item);
   },
     user_id,
     (element, id) => popupDeleteCard.open(element, id),
     handelLikeClick);
-  return card.creatCard();
+  return card.createCard();
 }
 
 //Add new card//
@@ -101,7 +118,10 @@ function addNewCard(name, link) {
       alert(err)
       console.log(err)
     })
-    .finally(() => buttonSaveNewCard.textContent = 'Создать')
+    .finally(() => {
+      popupAddCard.close()
+      buttonSaveNewCard.textContent = 'Создать'
+    })
 }
 
 //Delete Card//
@@ -112,7 +132,10 @@ function deleteCard(id) {
       alert(err)
       console.log(err)
     })
-    .finally(() => buttonDeleteCard.textContent = 'Да')
+    .finally(() => {
+      popupDeleteCard.close()
+      buttonDeleteCard.textContent = 'Да'
+    })
 }
 
 //Edit user info//
@@ -127,6 +150,7 @@ function editUserInfo(name, about) {
       console.log(err)
     })
     .finally(() => {
+      popupEditProfile.close()
       buttonSaveProfile.textContent = 'Сохранить';
     })
 }
@@ -142,7 +166,10 @@ function setNewAvatar(input) {
       alert(err)
       console.log(err)
     })
-    .finally(() => buttonSaveAvatar.textContent = 'Создать')
+    .finally(() => {
+      popupEditAvatar.close()
+      buttonSaveAvatar.textContent = 'Создать'
+    })
 }
 
 //Set form Validation//
