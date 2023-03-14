@@ -4,7 +4,6 @@ export const buttonAddNewCard = document.querySelector('.profile__add-button');
 
 //Profile//
 export const buttonEditAvatar = document.querySelector('.profile__edit-avatar-button');
-export const imageAvatar = document.querySelector('.profile__avatar');
 export const popupEditProfile = document.querySelector('.popup_type_edit');
 export const buttonSaveProfile = popupEditProfile.querySelector('.popup__save-button');
 //Avatar//

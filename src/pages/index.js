@@ -3,7 +3,6 @@ import {
   buttonEditProfile,
   buttonAddNewCard,
   buttonEditAvatar,
-  imageAvatar,
   buttonSaveNewCard,
   buttonSaveProfile,
   buttonSaveAvatar,
@@ -27,7 +26,7 @@ const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10
 
 Promise.all([api.getCards(), api.getCurrentUser()])
   .then(([items, user]) => {
-    imageAvatar.src = user.avatar;
+    userInfo.setAvatar(user.avatar);
     user_id = user._id;
     cardsSection.rendererElements(items, user_id);
     userInfo.setUserInfo(user);
@@ -42,11 +41,12 @@ const handelLikeClick = {
   deleteLike: (ip) => api.deleteLike(ip)
 }
 
-const formsCollection = {};
+const formValidators = {};
 
 const userInfo = new UserInfo({
   selectorUserName: '.profile__name',
-  selectorUserInfo: '.profile__job'
+  selectorUserInfo: '.profile__job',
+  avatarSelector: '.profile__avatar'
 });
 
 //Creat Cards From Array//
@@ -62,7 +62,7 @@ popupWithImage.setEventListeners();
 
 ///Form edit profile///
 //Creat element//
-const popupEditProfile = new PopupWithForm('.popup_type_edit', ({ inputName: name, inputJob: about }) => EditUserInfo(name, about))
+const popupEditProfile = new PopupWithForm('.popup_type_edit', ({ inputName: name, inputJob: about }) => editUserInfo(name, about))
 
 ///Form add new card///
 //Creat element//
@@ -106,7 +106,7 @@ function addNewCard(name, link) {
 
 //Delete Card//
 function deleteCard(id) {
-  buttonDeleteCard.textContent = 'Сохранение...';
+  buttonDeleteCard.textContent = 'Удаление...';
   return api.deleteCard(id)
     .catch(err => {
       alert(err)
@@ -116,7 +116,7 @@ function deleteCard(id) {
 }
 
 //Edit user info//
-function EditUserInfo(name, about) {
+function editUserInfo(name, about) {
   buttonSaveProfile.textContent = 'Сохранение...'
   api.setUserInfo(name, about)
     .then(res => {
@@ -136,7 +136,7 @@ function setNewAvatar(input) {
   buttonSaveAvatar.textContent = 'Сохранение...';
   api.setNewAvatar(input)
     .then((res) => {
-      imageAvatar.src = res.avatar
+      userInfo.setAvatar(res.avatar);
     })
     .catch(err => {
       alert(err)
@@ -149,8 +149,8 @@ function setNewAvatar(input) {
 function enableValidation({ formSelector, ...rest }) {
   const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
-    formsCollection[formElement.name] = new FormValidator(formElement, rest);
-    formsCollection[formElement.name].enableValidation();
+    formValidators[formElement.name] = new FormValidator(formElement, rest);
+    formValidators[formElement.name].enableValidation();
   });
 };
 
@@ -167,19 +167,19 @@ popupEditAvatar.setEventListeners();
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
-  formsCollection['formEditProfile'].resetInputError();
+  formValidators['formEditProfile'].resetInputError();
   popupEditProfile.setInputValues(userInfo.getUserInfo());
   popupEditProfile.open();
 });
 
 //Set listener for open add new card form//
 buttonAddNewCard.addEventListener('click', () => {
-  formsCollection['formAddCard'].resetInputError();
+  formValidators['formAddCard'].resetInputError();
   popupAddCard.open();
 });
 
 //Set listener for open edit form//
 buttonEditAvatar.addEventListener('click', () => {
-  formsCollection['formEditAvatar'].resetInputError();
+  formValidators['formEditAvatar'].resetInputError();
   popupEditAvatar.open();
 })
