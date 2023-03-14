@@ -17,7 +17,7 @@
     <section class="profile" aria-label="Профаил">
       <div class="profile__card">
         <button class="profile__edit-avatar-button" type="button" name="editNewAvater">
-          <img src="" class="profile__avatar" alt="Фото профайла">
+          <img src="<%=require('./images/Avatar.jpg')%>" class="profile__avatar" alt="Фото профайла">
           <div class="profile__avatar-blackout"></div>
         </button>
         <div class="profile__info">
@@ -99,7 +99,7 @@
       <form class="popup__form" name="formEditAvatar" novalidate>
         <fieldset class="popup__fieldset">
           <div class="popup__field">
-            <input input id="link-input" class="popup__input popup__input_input_link" type="url"
+            <input input id="avatar-input" class="popup__input popup__input_input_link" type="url"
               placeholder="Ссылка на картинку" name="avatar" required>
             <span class="popup__input-error link-input-error"></span>
           </div>
