@@ -51,7 +51,7 @@ export default class Card {
     this._buttonLike.addEventListener('click', () => this._handleLikeClick());
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
-      this._buttonTrash.addEventListener('click', () => this._handleDeleteCard(this._element, this._cardId))
+      this._buttonTrash.addEventListener('click', () => this._handleDeleteCard(this._cardId, this))
     }
   }
 
@@ -65,5 +65,10 @@ export default class Card {
     this._likeCounter.textContent = this._likes.length
 
     return this._element;
+  }
+
+  deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 }

@@ -71,7 +71,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add', ({ cardLinkImput: link
 
 ///Form delete card///
 //Creat element//
-const popupDeleteCard = new PopupWithConfirmation('.popup_type_delete', deleteCard);
+const popupDeleteCard = new PopupWithConfirmation('.popup_type_delete');
 
 ///Form edit avatar///
 //Creat element//
@@ -106,7 +106,7 @@ function createCard(item) {
     popupWithImage.open(item);
   },
     user_id,
-    (element, id) => popupDeleteCard.open(element, id),
+    (id, elm) => popupDeleteCard.open(id, elm),
     handelLikeClick);
   return card.createCard();
 }
@@ -129,9 +129,12 @@ function addNewCard(name, link) {
 }
 
 //Delete Card//
-function deleteCard(id) {
+function deleteCard(id, element) {
   buttonDeleteCard.textContent = 'Удаление...';
-  return api.deleteCard(id)
+  api.deleteCard(id)
+    .then(() =>{
+      element.deleteCard()
+    })
     .catch(err => {
       alert(err)
       console.log(err)
@@ -195,6 +198,8 @@ popupAddCard.setEventListeners();
 popupEditProfile.setEventListeners();
 popupDeleteCard.setEventListeners();
 popupEditAvatar.setEventListeners();
+
+popupDeleteCard.setCallback(deleteCard);
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
