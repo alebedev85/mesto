@@ -37,7 +37,7 @@ Promise.all([api.getCards(), api.getCurrentUser()])
   })
 
 //Hendel Like Click
-const handelLikeClick = {
+const handleLike = {
   addLike: (ip, element) => addLike(ip, element),
   deleteLike: (ip, element) => deleteLike(ip, element)
 }
@@ -107,7 +107,7 @@ function createCard(item) {
   },
     user_id,
     (id, elm) => popupDeleteCard.open(id, elm),
-    handelLikeClick);
+    handleLike);
   return card.createCard();
 }
 
@@ -129,10 +129,10 @@ function addNewCard(name, link) {
 }
 
 //Delete Card//
-function deleteCard(id, element) {
+function deleteCard({ id, element }) {
   buttonDeleteCard.textContent = 'Удаление...';
   api.deleteCard(id)
-    .then(() =>{
+    .then(() => {
       element.deleteCard()
     })
     .catch(err => {
