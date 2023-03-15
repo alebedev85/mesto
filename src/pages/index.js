@@ -8,7 +8,7 @@ import {
   buttonSaveAvatar,
   buttonDeleteCard
 } from '../scripts/constants.js';
-import selectors from '../scripts/selectors.js';
+import validationConfig from '../scripts/validationConfig.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -36,26 +36,10 @@ Promise.all([api.getCards(), api.getCurrentUser()])
     console.log(err);
   })
 
+//Hendel Like Click
 const handelLikeClick = {
   addLike: (ip, element) => addLike(ip, element),
   deleteLike: (ip, element) => deleteLike(ip, element)
-}
-
-function addLike(ip, element) {
-  api.addLike(ip)
-    .then(res => element.updateLikes(res.likes))
-    .catch(err => {
-      alert(err);
-      console.log(err);
-    })
-}
-function deleteLike(ip, element) {
-  api.deleteLike(ip)
-    .then(res => element.updateLikes(res.likes))
-    .catch(err => {
-      alert(err);
-      console.log(err);
-    })
 }
 
 const formValidators = {};
@@ -95,6 +79,26 @@ const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', setNewAvata
 
 
 //FUNCTIONS//
+
+//Add like//
+function addLike(ip, element) {
+  api.addLike(ip)
+    .then(res => element.updateLikes(res.likes))
+    .catch(err => {
+      alert(err);
+      console.log(err);
+    })
+}
+
+//Delete like//
+function deleteLike(ip, element) {
+  api.deleteLike(ip)
+    .then(res => element.updateLikes(res.likes))
+    .catch(err => {
+      alert(err);
+      console.log(err);
+    })
+}
 
 //Creat Card//
 function createCard(item) {
@@ -184,7 +188,7 @@ function enableValidation({ formSelector, ...rest }) {
 //Main Funtions//
 
 //Launch Form Validation//
-enableValidation(selectors);
+enableValidation(validationConfig);
 
 //Set listeners//
 popupAddCard.setEventListeners();
