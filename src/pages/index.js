@@ -102,16 +102,18 @@ function deleteLike(ip, element) {
 
 //Creat Card//
 function createCard(item) {
-  const card = new Card(item, '.element-temlate', () => {
-    handleCardClick(item);
-  },
+  const card = new Card(
+    item,
+    '.element-temlate',
+    handleCardClick,
     user_id,
     handleDeleteCard,
-    handleLike);
+    handleLike
+  );
   return card.createCard();
 }
 //CallBack for handleCardClick//
-function handleCardClick(item){
+function handleCardClick(item) {
   popupWithImage.open(item)
 }
 
