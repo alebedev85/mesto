@@ -1,7 +1,7 @@
 
 //Return document object of card///
 export default class Card {
-  constructor({ name, link, owner, _id, likes }, templateSelector, handleCardClick, userId, openDeletePopup, handleLike) {
+  constructor({ name, link, owner, _id, likes }, templateSelector, handleCardClick, userId, handleDeleteCard, handleLike) {
     this._titleCard = name;
     this._imageCard = link;
     this._templatSelector = templateSelector;
@@ -11,7 +11,7 @@ export default class Card {
     this._cardId = _id;
     this._likes = likes;
     this._hasMyLike = this._likes.some(elm => elm._id === this.userId)
-    this._handleDeleteCard = openDeletePopup;
+    this._handleDeleteCard = handleDeleteCard;
     this._handleLike = handleLike
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.element__image');
@@ -51,7 +51,7 @@ export default class Card {
     this._buttonLike.addEventListener('click', () => this._handleLikeClick());
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
-      this._buttonTrash.addEventListener('click', () => this._handleDeleteCard({id: this._cardId, element: this}))
+      this._buttonTrash.addEventListener('click', () => this._handleDeleteCard({ id: this._cardId, element: this }));
     }
   }
 

@@ -103,12 +103,22 @@ function deleteLike(ip, element) {
 //Creat Card//
 function createCard(item) {
   const card = new Card(item, '.element-temlate', () => {
-    popupWithImage.open(item);
+    handleCardClick(item);
   },
     user_id,
-    (id, elm) => popupDeleteCard.open(id, elm),
+    handleDeleteCard,
     handleLike);
   return card.createCard();
+}
+//CallBack for handleCardClick//
+function handleCardClick(item){
+  popupWithImage.open(item)
+}
+
+//CallBack for handleDeleteCard//
+function handleDeleteCard({ id, element }) {
+  popupDeleteCard.setCallback(() => deleteCard(id, element))
+  popupDeleteCard.open()
 }
 
 //Add new card//
@@ -129,7 +139,7 @@ function addNewCard(name, link) {
 }
 
 //Delete Card//
-function deleteCard({ id, element }) {
+function deleteCard(id, element) {
   buttonDeleteCard.textContent = 'Удаление...';
   api.deleteCard(id)
     .then(() => {
@@ -198,8 +208,6 @@ popupAddCard.setEventListeners();
 popupEditProfile.setEventListeners();
 popupDeleteCard.setEventListeners();
 popupEditAvatar.setEventListeners();
-
-popupDeleteCard.setCallback(deleteCard);
 
 //Set listener for open edit form//
 buttonEditProfile.addEventListener('click', () => {
