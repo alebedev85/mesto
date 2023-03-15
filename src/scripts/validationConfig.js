@@ -7,4 +7,4 @@ const validationConfig = {
   errorClass: 'popup__input-error_active',
 };
 
-export default selectors
+export default validationConfig
