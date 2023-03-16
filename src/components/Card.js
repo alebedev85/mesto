@@ -35,14 +35,15 @@ export default class Card {
   updateLikes(likes) {
     this._hasMyLike = likes.some(elm => elm._id === this.userId)
     this._likeCounter.textContent = likes.length
-    this._buttonLike.classList.toggle('element__reaction-button_activ');
   }
 
   _handleLikeClick() {
     if (this._hasMyLike) {
       this._handleLike.deleteLike(this._cardId, this);
+      this._buttonLike.classList.remove('element__reaction-button_activ');
     } else {
       this._handleLike.addLike(this._cardId, this);
+      this._buttonLike.classList.add('element__reaction-button_activ');
     }
   }
 
