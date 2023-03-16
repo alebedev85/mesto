@@ -7,14 +7,15 @@ export default class UserInfo {
 
   ///Return odject with user data///
   getUserInfo() {
-    const item = {};
-    item['inputName'] = this._profileName.textContent;
-    item['inputJob'] = this._profileInfo.textContent;
-    return item
+    const userInfo = {
+      inputName: this._profileName.textContent,
+      inputJob: this._profileInfo.textContent,
+    };
+    return {userInfo: userInfo, avatar: this._avatar}
   }
 
   ///Get new user data and add them on page///
-  setUserInfo({ name, about}) {
+  setUserInfo({ name, about }) {
     this._profileName.textContent = name;
     this._profileInfo.textContent = about;
   }

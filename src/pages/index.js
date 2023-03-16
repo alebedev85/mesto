@@ -81,8 +81,8 @@ const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', setNewAvata
 //FUNCTIONS//
 
 //Add like//
-function addLike(ip, element) {
-  api.addLike(ip)
+function addLike(cardId, element) {
+  api.addLike(cardId)
     .then(res => element.updateLikes(res.likes))
     .catch(err => {
       alert(err);
@@ -91,8 +91,8 @@ function addLike(ip, element) {
 }
 
 //Delete like//
-function deleteLike(ip, element) {
-  api.deleteLike(ip)
+function deleteLike(cardId, element) {
+  api.deleteLike(cardId)
     .then(res => element.updateLikes(res.likes))
     .catch(err => {
       alert(err);
