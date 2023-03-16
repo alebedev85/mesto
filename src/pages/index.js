@@ -20,15 +20,15 @@ import Api from '../components/Api.js'
 
 //VARS//
 
-let user_id;
+let userId;
 
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-61', '3e070c18-b10f-4e80-b715-68fa3cc00268');
 
 Promise.all([api.getCards(), api.getCurrentUser()])
   .then(([items, user]) => {
     userInfo.setAvatar(user.avatar);
-    user_id = user._id;
-    cardsSection.renderItems(items, user_id);
+    userId = user._id;
+    cardsSection.renderItems(items);
     userInfo.setUserInfo(user);
   })
   .catch(err => {
@@ -106,7 +106,7 @@ function createCard(item) {
     item,
     '.element-temlate',
     handleCardClick,
-    user_id,
+    userId,
     handleDeleteCard,
     handleLike
   );
@@ -128,15 +128,13 @@ function addNewCard(name, link) {
   buttonSaveNewCard.textContent = 'Сохранение...'
   api.addNewCard({ name, link })
     .then((item) => {
-      cardsSection.addItem(item, user_id)
+      cardsSection.addItem(item, userId);
+      popupAddCard.close();
+      buttonSaveNewCard.textContent = 'Создать';
     })
     .catch(err => {
-      alert(err)
-      console.log(err)
-    })
-    .finally(() => {
-      popupAddCard.close()
-      buttonSaveNewCard.textContent = 'Создать'
+      alert(err);
+      console.log(err);
     })
 }
 
@@ -145,15 +143,13 @@ function deleteCard(id, element) {
   buttonDeleteCard.textContent = 'Удаление...';
   api.deleteCard(id)
     .then(() => {
-      element.deleteCard()
+      element.deleteCard();
+      popupDeleteCard.close();
+      buttonDeleteCard.textContent = 'Да';
     })
     .catch(err => {
-      alert(err)
-      console.log(err)
-    })
-    .finally(() => {
-      popupDeleteCard.close()
-      buttonDeleteCard.textContent = 'Да'
+      alert(err);
+      console.log(err);
     })
 }
 
@@ -162,15 +158,13 @@ function editUserInfo(name, about) {
   buttonSaveProfile.textContent = 'Сохранение...'
   api.setUserInfo(name, about)
     .then(res => {
-      userInfo.setUserInfo(res)
+      userInfo.setUserInfo(res);
+      popupEditProfile.close();
+      buttonSaveProfile.textContent = 'Сохранить';
     })
     .catch(err => {
-      alert(err)
-      console.log(err)
-    })
-    .finally(() => {
-      popupEditProfile.close()
-      buttonSaveProfile.textContent = 'Сохранить';
+      alert(err);
+      console.log(err);
     })
 }
 
@@ -180,14 +174,12 @@ function setNewAvatar(input) {
   api.setNewAvatar(input)
     .then((res) => {
       userInfo.setAvatar(res.avatar);
+      popupEditAvatar.close();
+      buttonSaveAvatar.textContent = 'Создать';
     })
     .catch(err => {
       alert(err)
       console.log(err)
-    })
-    .finally(() => {
-      popupEditAvatar.close()
-      buttonSaveAvatar.textContent = 'Создать'
     })
 }
 

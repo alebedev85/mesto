@@ -47,7 +47,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', () => this._handleCardClick());
+    this._cardImage.addEventListener('click', () => this._handleCardClick({ name: this._titleCard, link: this._imageCard}));
     this._buttonLike.addEventListener('click', () => this._handleLikeClick());
     if (this._isOwner) {
       this._buttonTrash.style.visibility = "visible";
