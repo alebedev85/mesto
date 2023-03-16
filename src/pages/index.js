@@ -130,12 +130,13 @@ function addNewCard(name, link) {
     .then((item) => {
       cardsSection.addItem(item, userId);
       popupAddCard.close();
-      buttonSaveNewCard.textContent = 'Создать';
+
     })
     .catch(err => {
       alert(err);
       console.log(err);
     })
+    .finally(() => buttonSaveNewCard.textContent = 'Создать')
 }
 
 //Delete Card//
@@ -151,6 +152,7 @@ function deleteCard(id, element) {
       alert(err);
       console.log(err);
     })
+    .finally(() => buttonDeleteCard.textContent = 'Да')
 }
 
 //Edit user info//
@@ -166,6 +168,7 @@ function editUserInfo(name, about) {
       alert(err);
       console.log(err);
     })
+    .finally(() => buttonSaveProfile.textContent = 'Сохранить')
 }
 
 //Set new avatar//
@@ -181,6 +184,7 @@ function setNewAvatar(input) {
       alert(err)
       console.log(err)
     })
+    .finally(() => buttonSaveAvatar.textContent = 'Создать')
 }
 
 //Set form Validation//
