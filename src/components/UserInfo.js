@@ -11,7 +11,7 @@ export default class UserInfo {
       inputName: this._profileName.textContent,
       inputJob: this._profileInfo.textContent,
     };
-    return {userInfo: userInfo, avatar: this._avatar}
+    return {userInfo: userInfo, avatar: this._avatar.src}
   }
 
   ///Get new user data and add them on page///
